@@ -1,0 +1,45 @@
+<%= form_for(paldemic_file) do |f| %>
+  <% if paldemic_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(paldemic_file.errors.count, "error") %> prohibited this paldemic_file from being saved:</h2>
+
+      <ul>
+      <% paldemic_file.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :file %>
+    <%= f.text_area :file %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </div>
+
+  <div class="field">
+    <%= f.label :num_downloads %>
+    <%= f.number_field :num_downloads %>
+  </div>
+
+  <div class="field">
+    <%= f.label :num_upvotes %>
+    <%= f.number_field :num_upvotes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :num_downvotes %>
+    <%= f.number_field :num_downvotes %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

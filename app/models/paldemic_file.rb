@@ -1,0 +1,2 @@
+class PaldemicFile < ApplicationRecord
+end

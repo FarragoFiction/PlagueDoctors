@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Paldemic Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Num downloads</th>
+      <th>Num upvotes</th>
+      <th>Num downvotes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paldemic_files.each do |paldemic_file| %>
+      <tr>
+        <td><%=link_to("http://www.farragofiction.com/url?data=#{paldemic_file.file}"){paldemic_file.name}%> </td>
+        <td><%= paldemic_file.author %></td>
+        <td><%= paldemic_file.num_downloads %></td>
+        <td><%= paldemic_file.num_upvotes %></td>
+        <td><%= paldemic_file.num_downvotes %></td>
+        <td><%= link_to 'Show', paldemic_file %></td>
+        <td><%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %></td>
+        <td><%= link_to 'Destroy', paldemic_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paldemic File', new_paldemic_file_path %>

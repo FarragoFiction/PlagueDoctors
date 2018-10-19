@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @paldemic_file.name %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @paldemic_file.author %>
+</p>
+
+<p>
+  <strong>Num downloads:</strong>
+  <%= @paldemic_file.num_downloads %>
+</p>
+
+<p>
+  <strong>Num upvotes:</strong>
+  <%= @paldemic_file.num_upvotes %>
+</p>
+
+<p>
+  <strong>Num downvotes:</strong>
+  <%= @paldemic_file.num_downvotes %>
+</p>
+
+<%= link_to 'Edit', edit_paldemic_file_path(@paldemic_file) %> |
+<%= link_to 'Back', paldemic_files_path %>
