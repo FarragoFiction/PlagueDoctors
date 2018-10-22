@@ -26,6 +26,7 @@ class PaldemicFilesController < ApplicationController
   # POST /paldemic_files.json
   def create
     @paldemic_file = PaldemicFile.new(paldemic_file_params)
+    @paldemic_file.file = paldemic_file_params["file"].read
 
     respond_to do |format|
       if @paldemic_file.save
@@ -44,6 +45,9 @@ class PaldemicFilesController < ApplicationController
     respond_to do |format|
       puts "i found a password of #{ paldemic_file_params["pw"]} and my saved pw is #{@paldemic_file.pw}"
       if paldemic_file_params["pw"] == @paldemic_file.pw && @paldemic_file.update(paldemic_file_params)
+        #do it post update
+        @paldemic_file.file = paldemic_file_params["file"].read
+        @paldemic_file.save()
         format.html { redirect_to @paldemic_file, notice: 'Paldemic file was successfully updated.' }
         format.json { render :show, status: :ok, location: @paldemic_file }
       else
