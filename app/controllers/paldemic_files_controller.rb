@@ -10,6 +10,7 @@ class PaldemicFilesController < ApplicationController
   # GET /paldemic_files/1
   # GET /paldemic_files/1.json
   def show
+    puts "The password is #{@paldemic_file.pw}"
   end
 
   # GET /paldemic_files/new
@@ -41,10 +42,15 @@ class PaldemicFilesController < ApplicationController
   # PATCH/PUT /paldemic_files/1.json
   def update
     respond_to do |format|
-      if @paldemic_file.update(paldemic_file_params)
+      puts "i found a password of #{ paldemic_file_params["pw"]} and my saved pw is #{@paldemic_file.pw}"
+      if paldemic_file_params["pw"] == @paldemic_file.pw && @paldemic_file.update(paldemic_file_params)
         format.html { redirect_to @paldemic_file, notice: 'Paldemic file was successfully updated.' }
         format.json { render :show, status: :ok, location: @paldemic_file }
       else
+        if paldemic_file_params["pw"] != @paldemic_file.pw
+          @paldemic_file.errors.add(:pw)
+        end
+        puts "error is #{@paldemic_file.errors}"
         format.html { render :edit }
         format.json { render json: @paldemic_file.errors, status: :unprocessable_entity }
       end
@@ -69,6 +75,6 @@ class PaldemicFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paldemic_file_params
-      params.require(:paldemic_file).permit(:name, :author, :num_downloads, :num_upvotes, :num_downvotes, :file)
+      params.require(:paldemic_file).permit(:name, :author, :num_downloads, :num_upvotes, :num_downvotes, :file, :pw)
     end
 end

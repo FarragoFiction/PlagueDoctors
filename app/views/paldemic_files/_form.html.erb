@@ -25,19 +25,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :num_downloads %>
-    <%= f.number_field :num_downloads %>
+    Password:
+    <br>(Means only you or an admin can edit/delete)<br>
+    <%= f.text_field :pw, :value=>"" %>
   </div>
 
-  <div class="field">
-    <%= f.label :num_upvotes %>
-    <%= f.number_field :num_upvotes %>
-  </div>
 
-  <div class="field">
-    <%= f.label :num_downvotes %>
-    <%= f.number_field :num_downvotes %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>
