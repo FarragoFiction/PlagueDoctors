@@ -6,6 +6,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+      function helloWorld(){
+          alert("Hello World");
+      }
+
+      function storeFile(fileString){
+          var tag = "PALDEMICPREVIEWFILE";
+          try{
+              console.log("storing card");
+              localStorage.setItem(tag,cardString);
+          }catch(e){
+              console.log("local storage not available for paldemic file preview storage");
+          }
+      }
+
+    </script>
   </head>
 
   <body>
