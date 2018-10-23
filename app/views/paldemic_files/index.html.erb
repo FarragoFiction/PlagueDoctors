@@ -1,5 +1,15 @@
 <script>
-  helloWorld();
+
+  <% @paldemic_files.each do |paldemic_file, index| %>
+  //since i can't actually put the data in the url, instead shove it into local storage on click before going over there
+    function click<%=index %>(){
+        $("#paldemicFile<%=index %>").onmousedown(function(){
+            alert("clicking on paldemic file <%=index %> ");
+            storeFile(<%=paldemic_file.file %>);
+        });
+    }
+
+  <% end %>
 </script>
 <p id="notice"><%= notice %></p>
 
@@ -18,9 +28,9 @@
   </thead>
 
   <tbody>
-    <% @paldemic_files.each do |paldemic_file| %>
+    <% @paldemic_files.each do |paldemic_file,index| %>
       <tr>
-        <td><%=link_to("http://www.farragofiction.com/PaldemicSim/?data=#{paldemic_file.file}"){paldemic_file.name}%> </td>
+        <td><%=link_to("http://www.farragofiction.com/PaldemicSim/?data=#{paldemic_file.file}", id: "paldemicFile#{index}"){paldemic_file.name}%> </td>
         <td><%= paldemic_file.author %></td>
         <td><%= paldemic_file.num_downloads %></td>
         <td><%= paldemic_file.num_upvotes %></td>
