@@ -1,13 +1,12 @@
 <script>
 
     $(window).load(function() {
-        alert("window load occurred!");
         //since i can't actually put the data in the url, instead shove it into local storage on click before going over there
         <% @paldemic_files.each_with_index do |paldemic_file, index| %>
         //for file <%=paldemic_file.name %>
         $("#paldemicFile<%=index %>").click(function(){
-            alert("clicking on paldemic file <%=index %> ");
-            storeFile("<%=paldemic_file.name %>");
+            storeFile("<%=paldemic_file.file %>");
+            window.location.href = "http://www.farragofiction.com/PaldemicSim/?data=inCachePreview";
         });
 
         <% end %>
@@ -33,7 +32,7 @@
   <tbody>
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
       <tr>
-        <td><span id = 'paldemicFile<%=index%>'><%=paldemic_file.name%></span> </td>
+        <td><%=paldemic_file.name%><button id = 'paldemicFile<%=index%>'> Preview</button> </td>
         <td><%= paldemic_file.author %></td>
         <td><%= paldemic_file.num_downloads %></td>
         <td><%= paldemic_file.num_upvotes %></td>

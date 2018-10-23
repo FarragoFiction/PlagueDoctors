@@ -46,7 +46,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Gemfile" value="4" />
-          <entry key="erb" value="959" />
+          <entry key="erb" value="1075" />
           <entry key="gitignore" value="2" />
           <entry key="md" value="161" />
           <entry key="rb" value="575" />
@@ -56,7 +56,7 @@
         <counts>
           <entry key="Markdown" value="161" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="RHTML" value="959" />
+          <entry key="RHTML" value="1075" />
           <entry key="Ruby" value="579" />
         </counts>
       </usages-collector>
@@ -76,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/paldemic_files/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -370,12 +370,12 @@
       <option name="presentableId" value="Default" />
       <updated>1539909566848</updated>
       <workItem from="1539909571011" duration="3461000" />
-      <workItem from="1540211597327" duration="9575000" />
+      <workItem from="1540211597327" duration="9830000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13978000" />
+    <option name="totallyTimeSpent" value="14233000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="20" width="1400" height="880" extended-state="0" />
@@ -517,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/paldemic_files/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
