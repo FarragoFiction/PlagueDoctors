@@ -17,7 +17,7 @@
   <tbody>
     <% @paldemic_files.each do |paldemic_file| %>
       <tr>
-        <td><%=link_to("http://www.farragofiction.com/url?data=#{paldemic_file.file}"){paldemic_file.name}%> </td>
+        <td><%=link_to("http://www.farragofiction.com/PaldemicSim/?data=#{paldemic_file.file}"){paldemic_file.name}%> </td>
         <td><%= paldemic_file.author %></td>
         <td><%= paldemic_file.num_downloads %></td>
         <td><%= paldemic_file.num_upvotes %></td>
