@@ -16,11 +16,18 @@
   </thead>
 
   <tbody>
+  TODO:
+  <li>style everything</li>
+  <li>voting buttons</li>
+  <li>simple validation for uploaded files (reject if no file)</li>
+  <li>password lock destroying objects</li>
+  <li>ability to sort files by total votes or downloads</li>
+  <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
+  <li>filter by keywords (author, file name, etc)</li>
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
       <tr>
         <td><%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank"){paldemic_file.name}%> </td>
         <td><%= paldemic_file.author %></td>
-        <td><%= paldemic_file.num_downloads %></td>
         <td><%= paldemic_file.num_upvotes %></td>
         <td><%= paldemic_file.num_downvotes %></td>
         <td><%= link_to 'Show', paldemic_file %></td>
