@@ -1,7 +1,6 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1><span class = "logoName">Paldemic</span> Files</h1>
 
 <table>
   <thead>
@@ -30,9 +29,7 @@
         <td><%= paldemic_file.author %></td>
         <td><%= paldemic_file.num_upvotes %></td>
         <td><%= paldemic_file.num_downvotes %></td>
-        <td><%= link_to 'Show', paldemic_file %></td>
         <td><%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %></td>
-        <td><%= link_to 'Destroy', paldemic_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

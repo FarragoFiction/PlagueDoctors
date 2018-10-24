@@ -64,10 +64,16 @@ class PaldemicFilesController < ApplicationController
   # DELETE /paldemic_files/1
   # DELETE /paldemic_files/1.json
   def destroy
-    @paldemic_file.destroy
-    respond_to do |format|
-      format.html { redirect_to paldemic_files_url, notice: 'Paldemic file was successfully destroyed.' }
-      format.json { head :no_content }
+    if paldemic_file_params["pw"] == @paldemic_file.pw
+
+      @paldemic_file.destroy
+      respond_to do |format|
+        format.html { redirect_to paldemic_files_url, notice: 'Paldemic file was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      @paldemic_file.errors.add(:pw)
+      format.html { render :edit }
     end
   end
 

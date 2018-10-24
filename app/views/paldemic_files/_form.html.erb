@@ -36,3 +36,13 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<% if paldemic_file.id != nil %>
+<br>
+If you want to delete:
+<%= form_tag paldemic_file_path(id: paldemic_file.id), method: :delete do %>
+  <%= label_tag "******" %>
+  <%= password_field_tag 'pw', '' %>
+  <input value='Delete File' type='submit' id='submit-form'/>
+<% end %>
+<%end %>
