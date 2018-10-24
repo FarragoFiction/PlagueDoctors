@@ -17,12 +17,12 @@
 
 @font-face {
     font-family: cabin;
-    src: url("../Fonts/cabin.regular.ttf");
+    src: url("cabin.regular.ttf");
 }
 
 @font-face {
     font-family: norse;
-    src: url("../Fonts/viking/Viking.ttf");
+    src: url("viking/Viking.ttf");
 }
 
 html, body {

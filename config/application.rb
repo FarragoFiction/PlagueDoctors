@@ -18,5 +18,8 @@ module PlagueDoctor
         'Access-Control-Allow-Origin' => 'http://www.farragofiction.com',
         'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
     }
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
   end
 end
