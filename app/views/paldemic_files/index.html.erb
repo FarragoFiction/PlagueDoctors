@@ -6,7 +6,7 @@
         //for file <%=paldemic_file.name %>
         $("#paldemicFile<%=index %>").click(function(){
             storeFile("<%=paldemic_file.file %>");
-            window.location.href = "http://www.farragofiction.com/PaldemicSim/?data=inCachePreview";
+            window.open("http://www.farragofiction.com/PaldemicSim/?data=inCachePreview","_blank");
         });
 
         <% end %>
