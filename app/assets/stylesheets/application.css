@@ -13,3 +13,193 @@
  *= require_tree .
  *= require_self
  */
+
+
+@font-face {
+    font-family: cabin;
+    src: url("../Fonts/cabin.regular.ttf");
+}
+
+@font-face {
+    font-family: norse;
+    src: url("../Fonts/viking/Viking.ttf");
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 30px;
+    padding: 0px;
+    font-family: 'cabin', sans-serif;
+    background-color: #494949;
+    color: #c4c4c4;
+    position: absolute;
+}
+
+.logoName{
+    font-family: 'norse', sans-serif;
+}
+
+/* unvisited link */
+a:link {
+    color: #01a5b2;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #01a5b2;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: #01a5b2;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: #01a5b2;
+    text-decoration: none;
+}
+
+.themeToggle{
+    position: absolute;
+    bottom: 0px;
+    width: 30px;
+    left: 60px;
+}
+
+.clip-circle {
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+}
+
+.chatIntro{
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.hiddenScrollParent{
+    width: 400px;
+    height: 200px;
+    border: 1px solid #aaa;
+    overflow: hidden;
+}
+
+.hiddenScrollParentChatHandle{
+    width: 85px;
+    height: 90%;
+    overflow: hidden;
+}
+
+
+.hiddenScrollChild{
+    height: 100%;
+    margin-right: -50px; /* maximum width of scrollbar */
+    padding-right: 50px; /* maximum width of scrollbar */
+    overflow-y: scroll;
+}
+
+.chatHolder{
+    text-align: left;
+    width: 85px;
+    height: 100%;
+    margin: 0px;
+    vertical-align: top;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding-left: 10px;
+
+}
+
+.builderLink{
+    height: 70px;
+    width: 70px;
+}
+
+
+.chatLineText{
+    word-wrap: break-word;
+    max-width: 900px;
+}
+
+.chatLeftHeader{
+    width: 70px;
+    display: block;
+    padding-top: 5px;
+    position: relative;
+    border-radius: 15px;
+    border: 5px solid #393939;
+    padding-left: 5px;
+}
+
+.chatContainer{
+    vertical-align: top;
+    display: inline-block;
+    max-width: 1000px;
+    position: absolute;
+    left: 0px;
+    text-align: left;
+    margin-left: 95px;
+    padding-left: 10px;
+}
+
+.chatTitle{
+    display: inline;
+    position: absolute;
+    top:25px;
+    left: 75px;
+}
+
+hr{
+    height: 1px;
+    color: #595959;
+    background-color: #595959;
+    border: none;
+}
+
+#output {
+    text-align: center;
+    height: 100%;
+}
+
+.loadingScreen{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 500px;
+    padding: 10%;
+}
+
+.quipContent{
+    font-size: 24px;
+}
+
+.quipAttribution{
+    font-size: 12px;
+}
+
+.spinningLogo{
+    padding-bottom: 75px;
+}
+
+.helpLink{
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+}
+
+.statusElement{
+    padding-top: 15px;
+}
+
+.connectionProblems{
+    padding-top: 200px;
+}
