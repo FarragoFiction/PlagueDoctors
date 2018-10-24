@@ -40,12 +40,12 @@
 <% if paldemic_file.id != nil %>
 <br>
 If you want to delete:
-<%= form_for(paldemic_file, action: "delete") do |f| %>
+<%= form_for(paldemic_file,  :html => {:method=> "delete", :remote => true }) do |f| %>
   <%= f.label "******" %>
   <%= f.text_field :pw, :value=>"" %>
 
     <div class="actions">
-      <%= f.submit%>
+      <%= f.submit  "Delete File"%>
     </div>
 <% end %>
 <%end %>
