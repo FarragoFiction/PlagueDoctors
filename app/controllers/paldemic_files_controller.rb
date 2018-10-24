@@ -73,7 +73,7 @@ class PaldemicFilesController < ApplicationController
       end
     else
       @paldemic_file.errors.add(:pw)
-      format.html { render :edit }
+      format.html { render :index }
     end
   end
 
