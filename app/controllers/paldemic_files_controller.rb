@@ -29,7 +29,7 @@ class PaldemicFilesController < ApplicationController
     @paldemic_file.file = paldemic_file_params["file"].read
 
     respond_to do |format|
-      if @paldemic_file.save
+      if PaldemicFile.validFile?(paldemic_file_params["file"]) && @paldemic_file.save
         format.html { redirect_to @paldemic_file, notice: 'Paldemic file was successfully created.' }
         format.json { render :show, status: :created, location: @paldemic_file }
       else
@@ -44,7 +44,7 @@ class PaldemicFilesController < ApplicationController
   def update
     respond_to do |format|
       puts "i found a password of #{ paldemic_file_params["pw"]} and my saved pw is #{@paldemic_file.pw}"
-      if paldemic_file_params["pw"] == @paldemic_file.pw && @paldemic_file.update(paldemic_file_params)
+      if paldemic_file_params["pw"] == @paldemic_file.pw && PaldemicFile.validFile?(paldemic_file_params["file"]) && @paldemic_file.update(paldemic_file_params)
         #do it post update
         @paldemic_file.file = paldemic_file_params["file"].read
         @paldemic_file.save()
