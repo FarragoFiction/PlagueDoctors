@@ -12,9 +12,9 @@
   <li>filter by keywords (author, file name, etc)</li>
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
       <div class = 'voting'>
-        <img class = "upArrow" src = "up.png">
+        <%=image_tag "upArrow.png", class: "upArrow" %>
         <div class = "voteAmount"><%=paldemic_file.total_votes %></div>
-        <img class = "downArrow" src = "down.png">;
+        <%=image_tag "downArrow.png", class: "downArrow" %>
       </div>
       <div class = 'fileLine'>
         <li><%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank"){paldemic_file.name}%>
