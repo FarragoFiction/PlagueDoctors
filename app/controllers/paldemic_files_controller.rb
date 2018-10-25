@@ -28,11 +28,15 @@ class PaldemicFilesController < ApplicationController
     @paldemic_file = PaldemicFile.new(paldemic_file_params)
     @paldemic_file.file = paldemic_file_params["file"].read
 
+    validFile = PaldemicFile.validFile?(paldemic_file_params["file"])
     respond_to do |format|
-      if PaldemicFile.validFile?(paldemic_file_params["file"]) && @paldemic_file.save
+      if validFile && @paldemic_file.save
         format.html { redirect_to @paldemic_file, notice: 'Paldemic file was successfully created.' }
         format.json { render :show, status: :created, location: @paldemic_file }
       else
+        if(!validFile)
+          @paldemic_file.errors.add(:file)
+        end
         format.html { render :new }
         format.json { render json: @paldemic_file.errors, status: :unprocessable_entity }
       end
@@ -44,7 +48,9 @@ class PaldemicFilesController < ApplicationController
   def update
     respond_to do |format|
       puts "i found a password of #{ paldemic_file_params["pw"]} and my saved pw is #{@paldemic_file.pw}"
-      if paldemic_file_params["pw"] == @paldemic_file.pw && PaldemicFile.validFile?(paldemic_file_params["file"]) && @paldemic_file.update(paldemic_file_params)
+      validFile = PaldemicFile.validFile?(paldemic_file_params["file"])
+
+      if paldemic_file_params["pw"] == @paldemic_file.pw && validFile && @paldemic_file.update(paldemic_file_params)
         #do it post update
         @paldemic_file.file = paldemic_file_params["file"].read
         @paldemic_file.save()
@@ -53,6 +59,9 @@ class PaldemicFilesController < ApplicationController
       else
         if paldemic_file_params["pw"] != @paldemic_file.pw
           @paldemic_file.errors.add(:pw)
+        end
+        if(!validFile)
+          @paldemic_file.errors.add(:file)
         end
         puts "error is #{@paldemic_file.errors}"
         format.html { render :edit }
