@@ -2,6 +2,8 @@ class PaldemicFile < ApplicationRecord
   @@admin_pw = "jrbutitsforareallygoodcause"
 
   def total_votes
+    num_downvotes ||= 0
+    num_upvotes ||= 0
     return num_upvotes - num_downvotes;
   end
 
