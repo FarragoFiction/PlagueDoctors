@@ -28,8 +28,8 @@ class PaldemicFilesController < ApplicationController
     @paldemic_file = PaldemicFile.new(paldemic_file_params)
 
     if(paldemic_file_params["file"] != nil)
-      validFile = PaldemicFile.validFile?(paldemic_file_params["file"])
       @paldemic_file.file = paldemic_file_params["file"].read
+      validFile = PaldemicFile.validFile?(@paldemic_file.file)
     else
       validFile = false
     end
@@ -54,7 +54,7 @@ class PaldemicFilesController < ApplicationController
     respond_to do |format|
       puts "i found a password of #{ paldemic_file_params["pw"]} and my saved pw is #{@paldemic_file.pw}"
       if(paldemic_file_params["file"] != nil)
-        validFile = PaldemicFile.validFile?(paldemic_file_params["file"])
+        validFile = PaldemicFile.validFile?(paldemic_file_params["file"].read)
       else
         validFile = false
       end
