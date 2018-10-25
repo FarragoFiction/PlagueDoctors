@@ -7,7 +7,7 @@ class PaldemicFile < ApplicationRecord
   def PaldemicFile.validFile?(potentialFile)
     #every paldemic file starts with the file name and then this
     labelPattern = ":___ "
-    if(potentialFile.contains(labelPattern))
+    if(potentialFile.include?(labelPattern))
       return true
     end
     return false
