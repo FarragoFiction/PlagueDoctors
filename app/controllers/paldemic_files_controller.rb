@@ -1,6 +1,17 @@
 class PaldemicFilesController < ApplicationController
   before_action :set_paldemic_file, only: [:show, :edit, :update, :destroy]
 
+  #ajax only
+  def downvote
+
+  end
+
+  #ajax only
+  def upvote
+
+
+  end
+
   # GET /paldemic_files
   # GET /paldemic_files.json
   def index
