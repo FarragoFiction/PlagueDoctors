@@ -27,6 +27,22 @@ html, body {
     position: absolute;
 }
 
+.upArrow{
+    width: 18px;
+}
+
+.downArrow{
+    width: 16px;
+}
+
+.upArrow:hover{
+    background-color: #333333;
+}
+
+.downArrow:hover{
+    background-color: #333333;
+}
+
 .logoName{
     font-family: 'norse', sans-serif;
 }
