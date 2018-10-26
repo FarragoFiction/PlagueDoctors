@@ -1,21 +1,31 @@
 class PaldemicFilesController < ApplicationController
-  before_action :set_paldemic_file, only: [:show, :edit, :update, :destroy]
+  before_action :set_paldemic_file, only: [:show, :edit, :update, :destroy, :downvote, :upvote]
 
+  #should be an update, with an id....hrrm, how to route?
   def downvote
     @paldemic_file.num_downvotes +=1
-    @paldemic_file.update
     respond_to do |format|
-      format.html { redirect_to paldemic_files_url, notice: 'Down Vote tallied :)' }
-      format.json { head :no_content }
+      if(@paldemic_file.save)
+        format.html { redirect_to paldemic_files_url, notice: 'Down Vote tallied :)' }
+        format.json { head :no_content }
+      else
+        format.html { render :new }
+        format.json { render json: @paldemic_file.errors, status: :unprocessable_entity }
+      end
     end
+
   end
 
   def upvote
     @paldemic_file.num_upvotes +=1
-    @paldemic_file.update
     respond_to do |format|
-      format.html { redirect_to paldemic_files_url, notice: 'Up Vote tallied :)' }
-      format.json { head :no_content }
+      if(@paldemic_file.save)
+        format.html { redirect_to paldemic_files_url, notice: 'Up Vote tallied :)' }
+        format.json { head :no_content }
+      else
+        format.html { render :new }
+        format.json { render json: @paldemic_file.errors, status: :unprocessable_entity }
+      end
     end
   end
 
