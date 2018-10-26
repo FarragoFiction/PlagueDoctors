@@ -4,15 +4,12 @@
 
 
   TODO:
-  <li>ability to sort files by total votes or downloads</li>
   <li>add db migration for description</li>
+  <li>ability to change sort by (name, downloads, views, votes)</li>
   <li>if file isn't present, don't reject, but also don't replace in database</li>
-  <li>if name is nil, or empty, add default name or it can't be clicked on</li>
-  <li>limit description and name lengths</li>
   <li>filter by keywords (author, file name, etc)</li>
   <li>pagination</li>
   <li>ajax voting buttons (don't update page, don't allow multple voting without refreshing)</li>
-  <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
 
 <%= link_to 'New Paldemic File', new_paldemic_file_path %>
 
