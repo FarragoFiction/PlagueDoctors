@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181026181444) do
+ActiveRecord::Schema.define(version: 20181026193750) do
 
   create_table "paldemic_files", force: :cascade do |t|
     t.string   "name"
@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 20181026181444) do
     t.integer  "num_downloads"
     t.integer  "num_upvotes"
     t.integer  "num_downvotes"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
     t.string   "pw"
-    t.         "integer",       default: "0", null: false
-    t.integer  "num_views",     default: 0,   null: false
+    t.         "integer",       default: "0",                                         null: false
+    t.integer  "num_views",     default: 0,                                           null: false
+    t.string   "description",   default: "A really cool paldemic file, I promise!!!", null: false
   end
 
 end

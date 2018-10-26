@@ -134,6 +134,6 @@ class PaldemicFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paldemic_file_params
-      params.require(:paldemic_file).permit(:name, :author, :num_downloads, :num_upvotes, :num_downvotes, :file, :pw)
+      params.require(:paldemic_file).permit(:name, :author, :num_downloads, :num_upvotes, :num_downvotes, :file, :pw, :description)
     end
 end

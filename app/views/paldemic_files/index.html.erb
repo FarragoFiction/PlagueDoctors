@@ -4,7 +4,6 @@
 
 
   TODO:
-  <li>add db migration for description</li>
   <li>ability to change sort by (name, downloads, views, votes)</li>
   <li>if file isn't present, don't reject, but also don't replace in database</li>
   <li>filter by keywords (author, file name, etc)</li>
@@ -23,7 +22,10 @@
           </div>
           <div class = 'fileLine'>
             <%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank", :class=>"fileLink"){paldemic_file.name}%>
-              <div class = "author">Posted By: <%= paldemic_file.author %>,
+            <div class = "description">
+              <%=paldemic_file.description %>
+            </div>
+            <div class = "author">Posted By: <%= paldemic_file.author %>,
                 <%=paldemic_file.num_views %> Views, <%=paldemic_file.num_downloads %> Downloads
                 <%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %>
               </div>
