@@ -27,6 +27,22 @@ html, body {
     position: absolute;
 }
 
+.paldemicFile{
+    border-radius: 15px;
+    background-color: #595959;
+    margin: 5px;
+    padding: 10px;
+    width: 600px;
+}
+
+.voting{
+    display: inline-block;
+}
+
+.fileLine{
+    display: inline-block;
+}
+
 .upArrow{
     width: 18px;
 }

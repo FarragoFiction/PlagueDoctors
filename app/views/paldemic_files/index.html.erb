@@ -11,16 +11,18 @@
   <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
   <li>filter by keywords (author, file name, etc)</li>
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
-      <div class = 'voting'>
-        <%=image_tag "up.png", :class=> "upArrow" %>
-        <div class = "voteAmount"><%=paldemic_file.total_votes %></div>
-        <%=image_tag "down.png", :class=> "downArrow" %>
-      </div>
-      <div class = 'fileLine'>
-        <li><%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank"){paldemic_file.name}%>
-          <div class = "author">Posted By: <%= paldemic_file.author %></div>
-        <%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %>
-        </li>
+      <div class = "paldemicFile">
+          <div class = 'voting'>
+            <%=image_tag "up.png", :class=> "upArrow" %>
+            <div class = "voteAmount"><%=paldemic_file.total_votes %></div>
+            <%=image_tag "down.png", :class=> "downArrow" %>
+          </div>
+          <div class = 'fileLine'>
+            <%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank"){paldemic_file.name}%>
+              <div class = "author">Posted By: <%= paldemic_file.author %></div>
+            <%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %>
+
+          </div>
       </div>
     <% end %>
 
