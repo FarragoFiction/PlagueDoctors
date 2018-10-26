@@ -13,6 +13,10 @@
   <li>pagination</li>
   <li>ajax voting buttons (don't update page, don't allow multple voting without refreshing)</li>
   <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
+
+<%= link_to 'New Paldemic File', new_paldemic_file_path %>
+
+
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
       <div class = "paldemicFile">
           <div class = 'voting'>
@@ -32,4 +36,3 @@
 
 <br>
 
-<%= link_to 'New Paldemic File', new_paldemic_file_path %>
