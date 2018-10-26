@@ -1,15 +1,22 @@
 class PaldemicFilesController < ApplicationController
   before_action :set_paldemic_file, only: [:show, :edit, :update, :destroy]
 
-  #ajax only
   def downvote
-
+    @paldemic_file.num_downvotes +=1
+    @paldemic_file.update
+    respond_to do |format|
+      format.html { redirect_to paldemic_files_url, notice: 'Down Vote tallied :)' }
+      format.json { head :no_content }
+    end
   end
 
-  #ajax only
   def upvote
-
-
+    @paldemic_file.num_upvotes +=1
+    @paldemic_file.update
+    respond_to do |format|
+      format.html { redirect_to paldemic_files_url, notice: 'Up Vote tallied :)' }
+      format.json { head :no_content }
+    end
   end
 
   # GET /paldemic_files
