@@ -4,8 +4,8 @@
 
 
   TODO:
-  <li>style everything</li>
-  <li>voting buttons</li>
+  <li>wire up voting buttons</li>
+  <li>add db migration for description</li>
   <li>pagination</li>
   <li>ability to sort files by total votes or downloads</li>
   <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
@@ -13,12 +13,12 @@
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
       <div class = "paldemicFile">
           <div class = 'voting'>
-            <%=image_tag "up.png", :class=> "upArrow" %>
+            <%=link_to(image_tag("up.png", :class=> "upArrow"), "") %>
             <div class = "voteAmount"><%=paldemic_file.total_votes %></div>
-            <%=image_tag "down.png", :class=> "downArrow" %>
+            <%=link_to(image_tag("down.png", :class=> "downArrow"), "") %>
           </div>
           <div class = 'fileLine'>
-            <%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank"){paldemic_file.name}%>
+            <%=link_to("http://www.farragofiction.com/PaldemicSim?id=#{paldemic_file.id}", target:"_blank", :class=>"fileLink"){paldemic_file.name}%>
               <div class = "author">Posted By: <%= paldemic_file.author %></div>
             <%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %>
 

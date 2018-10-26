@@ -27,6 +27,21 @@ html, body {
     position: absolute;
 }
 
+.fileLine{
+    padding-left: 10px;
+}
+
+.fileLink{
+    font-size: 24px;
+}
+
+.voteAmount{
+    text-align: center;
+    font-size: 16px;
+    vertical-align: middle;
+    height: 25px;
+}
+
 .paldemicFile{
     border-radius: 15px;
     background-color: #595959;
