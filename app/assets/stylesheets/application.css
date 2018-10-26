@@ -27,6 +27,10 @@ html, body {
     position: absolute;
 }
 
+.description{
+    height: 30px;
+}
+
 .fileLine{
     padding-left: 10px;
     width: 96%;

@@ -87,13 +87,16 @@ class PaldemicFilesController < ApplicationController
       if(paldemic_file_params["file"] != nil)
         validFile = PaldemicFile.validFile?(paldemic_file_params["file"].read)
       else
-        validFile = false
+        #for updates, if they don't reupload the file that's fine
+        validFile = true
       end
 
       if paldemic_file_params["pw"] == @paldemic_file.pw && validFile && @paldemic_file.update(paldemic_file_params)
         #do it post update
-        @paldemic_file.file = paldemic_file_params["file"].read
-        @paldemic_file.save()
+        if(paldemic_file_params["file"] != nil)
+          @paldemic_file.file = paldemic_file_params["file"].read
+          @paldemic_file.save()
+        end
         format.html { redirect_to @paldemic_file, notice: 'Paldemic file was successfully updated.' }
         format.json { render :show, status: :ok, location: @paldemic_file }
       else
