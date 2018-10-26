@@ -39,7 +39,9 @@ class PaldemicFilesController < ApplicationController
   # GET /paldemic_files/1.json
   def show
     #puts "The password is #{@paldemic_file.pw}"
-    @paldemic_file.num_views
+    puts "number views is #{@paldemic_file.num_views}"
+    @paldemic_file.num_views += 1
+    @paldemic_file.save!
   end
 
   # GET /paldemic_files/new

@@ -30,6 +30,8 @@ html, body {
 .fileLine{
     padding-left: 10px;
     width: 96%;
+    display: inline-block;
+    height: 75px;
 }
 
 .fileLink{
@@ -61,9 +63,6 @@ html, body {
     float:left;
 }
 
-.fileLine{
-    display: inline-block;
-}
 
 .upArrow{
     width: 18px;

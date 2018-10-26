@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181026181443) do
+ActiveRecord::Schema.define(version: 20181026181444) do
 
   create_table "paldemic_files", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20181026181443) do
     t.datetime "updated_at",                  null: false
     t.string   "pw"
     t.         "integer",       default: "0", null: false
+    t.integer  "num_views",     default: 0,   null: false
   end
 
 end

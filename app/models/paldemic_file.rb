@@ -2,11 +2,13 @@ class PaldemicFile < ApplicationRecord
   @@admin_pw = "jrbutitsforareallygoodcause"
   after_create :defaultHack
 
+  #forgot to set default values in migration, good enough for now
   def defaultHack
     #save only if i change something, so need this almost redundant if statement
-    if(self.num_downvotes == nil || self.num_upvotes == nil || self.name == nil || self.name.blank?)
+    if(self.num_downvotes == nil || self.num_upvotes == nil || self.name == nil || self.name.blank? || self.num_downloads == nil)
       self.num_downvotes ||= 0
       self.num_upvotes ||= 0
+      self.num_downloads ||=0
       self.name ||= "???"
       self.save
     end
