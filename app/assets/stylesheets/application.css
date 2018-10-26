@@ -29,10 +29,16 @@ html, body {
 
 .fileLine{
     padding-left: 10px;
+    width: 96%;
 }
 
 .fileLink{
     font-size: 24px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 95%;
+    text-overflow: ellipsis;
 }
 
 .voteAmount{
@@ -52,6 +58,7 @@ html, body {
 
 .voting{
     display: inline-block;
+    float:left;
 }
 
 .fileLine{
