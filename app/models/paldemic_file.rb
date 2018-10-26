@@ -4,9 +4,10 @@ class PaldemicFile < ApplicationRecord
 
   def defaultHack
     #save only if i change something, so need this almost redundant if statement
-    if(self.num_downvotes == nil || self.num_upvotes == nil)
+    if(self.num_downvotes == nil || self.num_upvotes == nil || self.name == nil || self.name.blank?)
       self.num_downvotes ||= 0
       self.num_upvotes ||= 0
+      self.name ||= "???"
       self.save
     end
   end

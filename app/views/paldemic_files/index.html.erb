@@ -4,14 +4,14 @@
 
 
   TODO:
-  <li>ajax voting buttons (don't update page, don't allow multple voting without refreshing)</li>
+  <li>ability to sort files by total votes or downloads</li>
   <li>add db migration for description</li>
   <li>if name is nil, or empty, add default name or it can't be clicked on</li>
   <li>limit description and name lengths</li>
-  <li>pagination</li>
-  <li>ability to sort files by total votes or downloads</li>
-  <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
   <li>filter by keywords (author, file name, etc)</li>
+  <li>pagination</li>
+  <li>ajax voting buttons (don't update page, don't allow multple voting without refreshing)</li>
+  <li>add db migration to add 'view count' as well and increment when sent to chat viewer </li>
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
       <div class = "paldemicFile">
           <div class = 'voting'>
