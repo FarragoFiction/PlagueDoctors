@@ -84,8 +84,11 @@ class PaldemicFilesController < ApplicationController
   def update
     respond_to do |format|
       puts "i found a password of #{ paldemic_file_params["pw"]} and my saved pw is #{@paldemic_file.pw}"
+      readFile = ""
       if(paldemic_file_params["file"] != nil)
-        validFile = PaldemicFile.validFile?(paldemic_file_params["file"].read)
+        #can i only do this once? the file is geting set to null somehow
+        readFile = paldemic_file_params["file"].read
+        validFile = PaldemicFile.validFile?(readFile)
       else
         #for updates, if they don't reupload the file that's fine
         validFile = true
@@ -94,8 +97,12 @@ class PaldemicFilesController < ApplicationController
       if paldemic_file_params["pw"] == @paldemic_file.pw && validFile && @paldemic_file.update(paldemic_file_params)
         #do it post update
         if(paldemic_file_params["file"] != nil)
-          @paldemic_file.file = paldemic_file_params["file"].read
-          @paldemic_file.save()
+          @paldemic_file.file = readFile
+          if !@paldemic_file.save
+            puts "error is #{@paldemic_file.errors}"
+            format.html { render :edit }
+            format.json { render json: @paldemic_file.errors, status: :unprocessable_entity }
+          end
         end
         format.html { redirect_to @paldemic_file, notice: 'Paldemic file was successfully updated.' }
         format.json { render :show, status: :ok, location: @paldemic_file }
