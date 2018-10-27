@@ -33,22 +33,22 @@ class PaldemicFile < ApplicationRecord
 
   #i am doing so many metaprogramming shenanigans here, it shoudl probably be illegal
   # but it acomplishes my goal of getting this done quick
-  def PaldemicFile.sortShenanigans(list,sortyby, reverse)
+  def PaldemicFile.sortShenanigans(files,sortby, reverse)
     #secretly the default is to have max first cuz thats what you'd expect
     if reverse
-      if(PaldemicFile.has_attribute? sortyby)
-        list.sort_by!{|file| file[sortby]}
+      if(PaldemicFile.has_attribute? sortby)
+        files = files.sort_by{|file| file[sortby]}
       else
-        list.sort_by!{|file| file.send sortby}
+        files =files.sort_by{|file| file.send sortby}
       end
     else
-      if(PaldemicFile.has_attribute? sortyby)
-        list.sort_by!{|file| file[sortby]}.reverse
+      if(PaldemicFile.has_attribute? sortby)
+        files =files.sort_by{|file| file[sortby]}.reverse
       else
-        list.sort_by!{|file| file.send sortby}.reverse
+        files =files.sort_by{|file| file.send sortby}.reverse
       end
     end
-    return list
+    return files
   end
 
   #for automatic sorting
