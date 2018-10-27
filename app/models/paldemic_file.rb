@@ -31,6 +31,11 @@ class PaldemicFile < ApplicationRecord
     return false
   end
 
+  #for automatic sorting
+  def filesize
+    return file.size
+  end
+
   def validpw?(inputpw)
     tmp = "anJidXRpdHNmb3JhcmVhbGx5Z29vZGNhdXNl"
     tmp2 = Base64.encode64(inputpw).to_s

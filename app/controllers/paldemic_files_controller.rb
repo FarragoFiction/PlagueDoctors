@@ -33,8 +33,24 @@ class PaldemicFilesController < ApplicationController
   # GET /paldemic_files.json
   def index
     puts "params are #{params}"
-    reverse = params["reverse"] == true
-    @paldemic_files = PaldemicFile.all.sort_by{|file| file["total_votes"]}.reverse
+    sortby = params["sort"]
+    puts "sort is #{sortby} is it an attribute? #{PaldemicFile.has_attribute? sortby}"
+    #if nothing is passed in, default to total_votes
+    sortby ||= "total_votes"
+    @paldemic_files = PaldemicFile.all
+    if(!PaldemicFile.method_defined? sortby) && (!PaldemicFile.has_attribute? sortby)
+      #if what is passed in is total gargbage , total votes
+      puts "couldn't find #{sortby} so using total votes instead"
+      sortby ||= "total_votes"
+    end
+    reverse = params["reverse"] == "true"
+    puts "reverse is #{reverse}"
+    #secretly the default is to have max first cuz thats what you'd expect
+    if reverse
+      @paldemic_files = PaldemicFile.all.sort_by{|file| file[sortby]}
+    else
+      @paldemic_files = PaldemicFile.all.sort_by{|file| file[sortby]}.reverse
+    end
   end
 
   # GET /paldemic_files/1
