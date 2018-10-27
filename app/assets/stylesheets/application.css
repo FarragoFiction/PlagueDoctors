@@ -27,6 +27,9 @@ html, body {
     position: absolute;
 }
 
+.currentSort{
+    background-color: yellow;
+}
 .description{
     height: 30px;
 }

@@ -45,12 +45,8 @@ class PaldemicFilesController < ApplicationController
     end
     reverse = params["reverse"] == "true"
     puts "reverse is #{reverse}"
-    #secretly the default is to have max first cuz thats what you'd expect
-    if reverse
-      @paldemic_files = PaldemicFile.all.sort_by{|file| file[sortby]}
-    else
-      @paldemic_files = PaldemicFile.all.sort_by{|file| file[sortby]}.reverse
-    end
+    @paldemic_files = PaldemicFile.sortShenanigans(@paldemic_files, sortby,reverse)
+
   end
 
   # GET /paldemic_files/1

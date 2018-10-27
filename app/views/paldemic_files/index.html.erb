@@ -12,7 +12,18 @@
 <%= link_to 'New Paldemic File', new_paldemic_file_path %>
 
 <div class = "votes">
-  Sort By: <%=link_to "Total Votes" ,paldemic_files_path(:sort=>"total_votes")%>
+  Sort By:
+  <%if params["sort"] == "total_votes" && params["reverse"] != "true"  %>
+    <%=link_to "Total Votes" ,paldemic_files_path(:sort=>"total_votes",:reverse=>"true"),:class=>"currentSort"%> |
+  <%else %>
+    <%=link_to "Total Votes" ,paldemic_files_path(:sort=>"total_votes")%> |
+  <%end %>
+  <%=link_to "Up Votes" ,paldemic_files_path(:sort=>"num_upvotes")%> |
+  <%=link_to "Down Votes" ,paldemic_files_path(:sort=>"num_downvotes")%> |
+  <%=link_to "Views" ,paldemic_files_path(:sort=>"num_views")%> |
+  <%=link_to "Name" ,paldemic_files_path(:sort=>"name")%> |
+  <%=link_to "Author" ,paldemic_files_path(:sort=>"author")%> |
+  <%=link_to "File Size" ,paldemic_files_path(:sort=>"file_size")%> |
 </div>
 
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
