@@ -52,7 +52,7 @@ class PaldemicFile < ApplicationRecord
   end
 
   #for automatic sorting
-  def filesize
+  def file_size
     return file.size
   end
 

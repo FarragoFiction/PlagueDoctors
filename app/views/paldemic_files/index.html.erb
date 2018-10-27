@@ -13,17 +13,20 @@
 
 <div class = "votes">
   Sort By:
-  <%if params["sort"] == "total_votes" && params["reverse"] != "true"  %>
-    <%=link_to "Total Votes" ,paldemic_files_path(:sort=>"total_votes",:reverse=>"true"),:class=>"currentSort"%> |
-  <%else %>
-    <%=link_to "Total Votes" ,paldemic_files_path(:sort=>"total_votes")%> |
-  <%end %>
-  <%=link_to "Up Votes" ,paldemic_files_path(:sort=>"num_upvotes")%> |
-  <%=link_to "Down Votes" ,paldemic_files_path(:sort=>"num_downvotes")%> |
-  <%=link_to "Views" ,paldemic_files_path(:sort=>"num_views")%> |
-  <%=link_to "Name" ,paldemic_files_path(:sort=>"name")%> |
-  <%=link_to "Author" ,paldemic_files_path(:sort=>"author")%> |
-  <%=link_to "File Size" ,paldemic_files_path(:sort=>"file_size")%> |
+
+
+
+  <%#keep it dry %>
+  <% sorts = {"Total Votes"=>"total_votes","Up Votes"=>"num_upvotes","Down Votes"=>"num_downvotes","Views"=>"num_views","Name"=>"name","Author"=>"author","File Size"=>"file_size"} %>
+  <% sorts.each do |key,value| %>
+    <%if params["sort"] == value && params["reverse"] != "true"  %>
+      <%=link_to key ,paldemic_files_path(:sort=>value,:reverse=>"true"),:class=>"currentSort"%> |
+    <%elsif params["sort"] == value  %>
+      <%=link_to key ,paldemic_files_path(:sort=>value),:class=>"currentSort"%> |
+    <%else %>
+        <%=link_to key ,paldemic_files_path(:sort=>value)%> |
+<%end %>
+  <% end %>
 </div>
 
     <% @paldemic_files.each_with_index do |paldemic_file,index| %>
