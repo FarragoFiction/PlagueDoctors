@@ -32,7 +32,9 @@ class PaldemicFilesController < ApplicationController
   # GET /paldemic_files
   # GET /paldemic_files.json
   def index
-    @paldemic_files = PaldemicFile.all.sort_by{|file| file.total_votes}.reverse
+    puts "params are #{params}"
+    reverse = params["reverse"] == true
+    @paldemic_files = PaldemicFile.all.sort_by{|file| file["total_votes"]}.reverse
   end
 
   # GET /paldemic_files/1
