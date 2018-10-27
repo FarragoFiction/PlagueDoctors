@@ -28,7 +28,9 @@ html, body {
 }
 
 .currentSort{
-    background-color: yellow;
+    background-color: #595959;
+    font-weight: bold;
+
 }
 .description{
     height: 30px;
