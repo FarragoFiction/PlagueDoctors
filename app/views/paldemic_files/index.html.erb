@@ -27,7 +27,8 @@
               <%=paldemic_file.description %>
             </div>
             <div class = "author">Posted By: <%= paldemic_file.author %>,
-                <%=paldemic_file.num_views %> Views, <%=paldemic_file.num_downloads %> Downloads
+               <%=paldemic_file.file.size/1024 %> KB,
+                <%=paldemic_file.num_views %> Views, <%=paldemic_file.num_downloads %> Downloads,
                 <%= link_to 'Edit', edit_paldemic_file_path(paldemic_file) %>
               </div>
 
