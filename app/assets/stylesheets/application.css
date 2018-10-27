@@ -30,8 +30,17 @@ html, body {
 .currentSort{
     background-color: #595959;
     font-weight: bold;
-
 }
+
+.new_link{
+    font-size: 24px;
+    padding: 15px;
+    display: inline-block;
+    background-color: #393939;
+    color: #c4c4c4;
+    border-radius: 15px;
+}
+
 .description{
     height: 30px;
 }

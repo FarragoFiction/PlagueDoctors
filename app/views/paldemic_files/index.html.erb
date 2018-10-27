@@ -4,17 +4,13 @@
 
 
   TODO:
-  <li>ability to change sort by (name, downloads, views, votes, filesize)</li>
   <li>filter by keywords (author, file name, etc) (named scope?)</li>
   <li>pagination</li>
-  <li>ajax voting buttons (don't update page, don't allow multple voting without refreshing)</li>
 
-<%= link_to 'New Paldemic File', new_paldemic_file_path %>
+<%= link_to 'New Paldemic File', new_paldemic_file_path, :class => "new_link" %>
 
 <div class = "votes">
   Sort By:
-
-
 
   <%#keep it dry %>
   <% sorts = {"Total Votes"=>"total_votes","Up Votes"=>"num_upvotes","Down Votes"=>"num_downvotes","Views"=>"num_views","Name"=>"name","Author"=>"author","File Size"=>"file_size"} %>
