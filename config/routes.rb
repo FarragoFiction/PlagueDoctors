@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     member do
       put 'upvote'
       put 'downvote'
+    end
+
+    collection do
       get 'random'
     end
   end
