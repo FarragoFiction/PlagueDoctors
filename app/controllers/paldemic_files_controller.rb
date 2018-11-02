@@ -29,6 +29,13 @@ class PaldemicFilesController < ApplicationController
     end
   end
 
+  #GET /paldemic_files/random
+  def random
+    @paldemic_file = PaldemicFile.all.shuffle.first
+    format.html { redirect_to @paldemic_file }
+    format.json { render :show, status: :created, location: @paldemic_file }
+  end
+
   # GET /paldemic_files
   # GET /paldemic_files.json
   def index
