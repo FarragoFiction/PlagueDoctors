@@ -14,7 +14,11 @@
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
+  </div>
 
+  <div class="field fileSection">
+    <%= link_to "Paldemic File Builder","http://www.farragofiction.com/PaldemicSim/builder.html", target:"_blank" %>
+    <Br>
     <%= f.label :file %>
     <%= f.file_field :file%>
   </div>
@@ -26,7 +30,7 @@
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
 
   <div class="field">
