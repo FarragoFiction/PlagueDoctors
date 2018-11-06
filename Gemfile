@@ -21,6 +21,9 @@ gem 'devise'
 #don't make people make new accounts
 gem 'omniauth'
 
+#have them use google
+gem 'omniauth-google-oauth2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
