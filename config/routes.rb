@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :paldemic_files do
     member do
       put 'upvote'
