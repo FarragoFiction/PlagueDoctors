@@ -27,6 +27,12 @@ html, body {
     position: absolute;
 }
 
+.paldemicIFrame{
+    overflow: hidden;
+    width:90%;
+    border:none;
+}
+
 .currentSort{
     background-color: #595959;
     font-weight: bold;

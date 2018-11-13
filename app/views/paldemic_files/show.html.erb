@@ -1,43 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @paldemic_file.name %>
-</p>
+<iframe class = 'paldemicIFrame' src="http://www.farragofiction.com/PaldemicSim/?id=<%=@paldemic_file.id%>>">
 
-<p>
-  <strong>Author:</strong>
-  <%= @paldemic_file.author %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @paldemic_file.description %>
-</p>
-
-<p>
-  <strong>Num Views:</strong>
-  <%= @paldemic_file.num_views %>
-</p>
-
-
-<p>
-  <strong>Num downloads:</strong>
-  <%= @paldemic_file.num_downloads %>
-</p>
-
-<p>
-  <strong>Num upvotes:</strong>
-  <%= @paldemic_file.num_upvotes %>
-</p>
-
-<p>
-  <strong>Num downvotes:</strong>
-  <%= @paldemic_file.num_downvotes %>
-</p>
-
-<%= link_to 'Edit', edit_paldemic_file_path(@paldemic_file) %> |
-<%= link_to 'Back', paldemic_files_path %>
+</iframe>
 
 
 <div id="disqus_thread" style = "width:90%"></div>
@@ -50,7 +15,7 @@
 /*
     var disqus_config = function () {
       this.page.url = "herpaderp";  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = "<%=@paldemic_file.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.identifier = ""; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };*/
 
     (function() { // DON'T EDIT BELOW THIS LINE
