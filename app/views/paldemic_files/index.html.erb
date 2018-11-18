@@ -8,7 +8,7 @@
   Sort By:
 
   <%#keep it dry %>
-  <% sorts = {"Total Votes"=>"total_votes","Up Votes"=>"num_upvotes","Down Votes"=>"num_downvotes","Views"=>"num_views","Name"=>"name","Author"=>"author","File Size"=>"file_size"} %>
+  <% sorts = {"Date Created"=>"created_at","Total Votes"=>"total_votes","Up Votes"=>"num_upvotes","Down Votes"=>"num_downvotes","Views"=>"num_views","Name"=>"name","Author"=>"author","File Size"=>"file_size"} %>
   <% sorts.each do |key,value| %>
     <%if params["sort"] == value && params["reverse"] != "true"  %>
       <%=link_to key ,paldemic_files_path(:sort=>value,:reverse=>"true"),:class=>"currentSort"%> |
