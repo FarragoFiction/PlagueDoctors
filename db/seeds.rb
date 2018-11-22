@@ -28,7 +28,7 @@ permanents = [karkat,feferi,terezi,sollux,vriska,kanaya,tavros,eridan,gamzee,nep
 
 #keeps it from remaking seeds already in the system
 permanents.each do |x|
-  if(!TimeHole.exists?(wigglerJson: x))
+  if(!TimeHole.exists?(wigglerJSON: x))
     TimeHole.create(permanent: true , wigglerJSON: x)
   end
 end
