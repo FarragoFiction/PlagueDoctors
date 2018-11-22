@@ -12,9 +12,15 @@ class TimeHolesController < ApplicationController
   def show
   end
 
-  def timehole
-    @time_hole = TimeHole.order("RANDOM()").limit(1).first
-    render json: @time_hole.as_json, status: 200
+  def TIMEHOLE
+    @new_time_hole = TimeHole.create(time_hole_params)
+    @chosen_time_hole = TimeHole.order("RANDOM()").limit(1).first
+    puts "going to try to delete"
+    if(!@chosen_time_hole.permanent)
+      @chosen_time_hole.delete
+    end
+    render json: @chosen_time_hole.as_json, status: 200
+
   end
 
   # GET /time_holes/new

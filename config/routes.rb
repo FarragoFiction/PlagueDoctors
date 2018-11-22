@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :time_holes do
     collection do
-      get 'TIMEHOLE'
+      post 'TIMEHOLE'
     end
   end
   resources :paldemic_files do
