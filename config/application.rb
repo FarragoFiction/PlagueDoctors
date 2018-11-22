@@ -15,7 +15,7 @@ module PlagueDoctor
 
     # in config/application.rb
     config.action_dispatch.default_headers = {
-        'Access-Control-Allow-Origin' => 'http://www.farragofiction.com',
+        'Access-Control-Allow-Origin' => %w{http://www.farragofiction.com http://farragofiction.com}.join(","),
         'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
     }
 
