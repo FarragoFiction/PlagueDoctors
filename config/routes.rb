@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :time_holes
   resources :paldemic_files do
     member do
       put 'upvote'

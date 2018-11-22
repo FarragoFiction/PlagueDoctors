@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wigglerjson:</strong>
+  <%= @time_hole.wigglerJSON %>
+</p>
+
+<p>
+  <strong>Permanent:</strong>
+  <%= @time_hole.permanent %>
+</p>
+
+<%= link_to 'Edit', edit_time_hole_path(@time_hole) %> |
+<%= link_to 'Back', time_holes_path %>

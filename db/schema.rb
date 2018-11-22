@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181106134149) do
+ActiveRecord::Schema.define(version: 20181121181747) do
 
   create_table "paldemic_files", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20181106134149) do
     t.         "integer",       default: "0",                                         null: false
     t.integer  "num_views",     default: 0,                                           null: false
     t.string   "description",   default: "A really cool paldemic file, I promise!!!", null: false
+  end
+
+  create_table "time_holes", force: :cascade do |t|
+    t.string   "wigglerJSON"
+    t.boolean  "permanent"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

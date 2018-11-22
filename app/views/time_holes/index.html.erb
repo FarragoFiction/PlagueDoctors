@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Time Holes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wigglerjson</th>
+      <th>Permanent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_holes.each do |time_hole| %>
+      <tr>
+        <td><%= time_hole.wigglerJSON %></td>
+        <td><%= time_hole.permanent %></td>
+        <td><%= link_to 'Show', time_hole %></td>
+        <td><%= link_to 'Edit', edit_time_hole_path(time_hole) %></td>
+        <td><%= link_to 'Destroy', time_hole, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Time Hole', new_time_hole_path %>

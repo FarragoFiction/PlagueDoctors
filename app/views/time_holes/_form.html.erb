@@ -1,0 +1,27 @@
+<%= form_for(time_hole) do |f| %>
+  <% if time_hole.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(time_hole.errors.count, "error") %> prohibited this time_hole from being saved:</h2>
+
+      <ul>
+      <% time_hole.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :wigglerJSON %>
+    <%= f.text_field :wigglerJSON %>
+  </div>
+
+  <div class="field">
+    <%= f.label :permanent %>
+    <%= f.check_box :permanent %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

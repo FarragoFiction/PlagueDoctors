@@ -1,0 +1,2 @@
+class TimeHole < ApplicationRecord
+end
