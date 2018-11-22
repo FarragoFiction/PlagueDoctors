@@ -12,6 +12,11 @@ class TimeHolesController < ApplicationController
   def show
   end
 
+  def timehole
+    @time_hole = TimeHole.order("RANDOM()").limit(1).first
+    render json: @time_hole.as_json, status: 200
+  end
+
   # GET /time_holes/new
   def new
     @time_hole = TimeHole.new
