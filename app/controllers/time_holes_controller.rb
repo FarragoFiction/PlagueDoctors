@@ -1,5 +1,6 @@
 class TimeHolesController < ApplicationController
   before_action :set_time_hole, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery with: :null_session
 
   # GET /time_holes
   # GET /time_holes.json
