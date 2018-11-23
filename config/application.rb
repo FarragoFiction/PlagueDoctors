@@ -15,6 +15,7 @@ module PlagueDoctor
 
     # in config/application.rb
     config.action_dispatch.default_headers = {
+        #okay so like, future jr? we really need to figure out how to let both www and http:// domains work. for now tho, just....let it be
         'Access-Control-Allow-Origin' => "*",
         'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
     }
