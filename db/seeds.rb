@@ -24,7 +24,8 @@ despap = '{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\
 
 clear = [karkat,feferi,terezi,sollux,vriska,kanaya,tavros,eridan,gamzee,nepeta,aradia,equius,despap]
 clear.each do |x|
-  if(!TimeHole.exists?(wigglerJSON: x))
+  if(TimeHole.exists?(wigglerJSON: x))
+    puts "deleting a legacy wiggler"
     TimeHole.find_by_wigglerJSON(x).delete
   end
 end
