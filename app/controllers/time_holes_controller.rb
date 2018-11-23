@@ -15,8 +15,17 @@ class TimeHolesController < ApplicationController
   def TIMEHOLE
     params.permit(:wigglerJSON, :permanent)
     @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
-    @chosen_time_hole = TimeHole.order("RANDOM()").limit(1).first
-    puts "going to try to delete"
+
+    #mostly will try to find a user wiggler
+    if rand > .7
+      @chosen_time_hole = TimeHole.user_generated.random.first
+    end
+
+    #if it cant or didnt even try to, go for any wiggler (even a canon one)
+    if(@chosen_time_hole == nil)
+      @chosen_time_hole = TIMEHOLE.random.first
+    end
+    
     if(!@chosen_time_hole.permanent)
       @chosen_time_hole.delete
     end
