@@ -4,7 +4,11 @@ class TimeHole < ApplicationRecord
 
   def name
     index =  wigglerJSON.index("nameJSON")
-    index2 = wigglerJSON.index("healthJson")
+    return wigglerJSON[index,50]
+  end
+
+  def breeder
+    index =  wigglerJSON.index("breeder")
     return wigglerJSON[index,100]
   end
 
