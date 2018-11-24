@@ -17,7 +17,7 @@ class TimeHolesController < ApplicationController
     @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
 
     #mostly will try to find a user wiggler
-    if rand > 0.9
+    if rand > 0.99
       @chosen_time_hole = TimeHole.user_generated.random.first
     end
 
@@ -35,7 +35,7 @@ class TimeHolesController < ApplicationController
 
   def adoptTIMEHOLE
     #mostly will try to find a user wiggler
-    if rand > 0.9
+    if rand > 0.99
       @chosen_time_hole = TimeHole.user_generated.random.first
     end
 
