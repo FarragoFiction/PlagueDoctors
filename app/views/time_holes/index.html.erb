@@ -14,7 +14,7 @@
   <tbody>
     <% @time_holes.each do |time_hole| %>
       <tr>
-        <td><%= time_hole.wigglerJSON %></td>
+        <td><%= time_hole.name %></td>
         <td><%= time_hole.permanent %></td>
         <td><%= link_to 'Show', time_hole %></td>
         <td><%= link_to 'Edit', edit_time_hole_path(time_hole) %></td>
