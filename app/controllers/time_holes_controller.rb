@@ -17,7 +17,7 @@ class TimeHolesController < ApplicationController
     @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
 
     #mostly will try to find a user wiggler
-    if rand > 0.7
+    if rand > 0.9
       @chosen_time_hole = TimeHole.user_generated.random.first
     end
 
@@ -31,6 +31,31 @@ class TimeHolesController < ApplicationController
     end
     render json: @chosen_time_hole.as_json, status: 200
 
+  end
+
+  def adoptTIMEHOLE
+    #mostly will try to find a user wiggler
+    if rand > 0.9
+      @chosen_time_hole = TimeHole.user_generated.random.first
+    end
+
+    #if it cant or didnt even try to, go for any wiggler (even a canon one)
+    if(@chosen_time_hole == nil)
+      @chosen_time_hole = TimeHole.random.first
+    end
+
+    if(!@chosen_time_hole.permanent)
+      @chosen_time_hole.delete
+    end
+    render json: @chosen_time_hole.as_json, status: 200
+
+  end
+
+  def abdicateTIMEHOLE
+    params.permit(:wigglerJSON, :permanent)
+    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
+
+    render text: "You monster.", status: 200
   end
 
   # GET /time_holes/new

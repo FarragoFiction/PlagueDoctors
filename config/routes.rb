@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :time_holes do
     collection do
       post 'TIMEHOLE'
+      get 'adoptTIMEHOLE'
+      post 'abdicateTIMEHOLE'
     end
   end
   resources :paldemic_files do
