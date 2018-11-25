@@ -4,6 +4,8 @@ one:
   name: MyString
   author: MyString
   num_downloads: 1
+  file: ;alksjdf;aslkjf
+  pw: whatever
   num_upvotes: 1
   num_downvotes: 1
 
@@ -11,5 +13,8 @@ two:
   name: MyString
   author: MyString
   num_downloads: 1
+  file: ;alksjdf;aslkjf
+  pw: whatever
   num_upvotes: 1
   num_downvotes: 1
+

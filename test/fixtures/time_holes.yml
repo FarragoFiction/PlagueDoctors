@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  wigglerJSON: MyString
+  wigglerJSON: {"pet":"{\"lastPlayed\":\"1543166287741\",\"isempress\":\"false\",\"hatchDate\":\"1543166287741\",\"lastFed\":\"1543166287741\",\"dollDATAURL\":\" Burgundy Egg:___HBTlJQ6hAABQAAChAADwAABQAAChAAChAAChAAAAAABLS0s6OjoREREAAAAREREzMzPExMShAABQAAAIgcQOIEmAgwCU-BfYEICEIEY=\",\"boredomJson\":\"0\",\"nameJSON\":\" Burgundy Egg\",\"healthJson\":\"100\",\"TYPE\":\"EGG\",\"corrupt\":\"false\",\"purified\":\"false\",\"patience\":\"6\",\"idealistic\":\"3\",\"curious\":\"12\",\"loyal\":\"15\",\"energetic\":\"27\",\"external\":\"26\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"Oakrin Crowly"}
+
   permanent: false
 
 two:
-  wigglerJSON: MyString
+  wigglerJSON: {"pet":"{\"lastPlayed\":\"1543122171478\",\"isempress\":\"false\",\"hatchDate\":\"1543120727276\",\"lastFed\":\"1543120727276\",\"dollDATAURL\":\"Rudy Pusheen:___HBRiKjIAgoIAQUEAgoIAw8MAQUH_uin_uikAgoIAAABLS0s6OjoREREAAAAREREzMzPExMQAgoIAQUEIgEOAIcC6AqPgIEwBBgCDAKEBQ4A=\",\"boredomJson\":\"0\",\"nameJSON\":\"Rudy Pusheen\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"false\",\"purified\":\"false\",\"patience\":\"43\",\"idealistic\":\"-25\",\"curious\":\"-9\",\"loyal\":\"-12\",\"energetic\":\"21\",\"external\":\"35\",\"remembered\":\"{}\",\"rememberedNames\":\"{, Grace'sVessel, Scott'sVessel, Selene'sVessel, DeanvonPoops-a-Lot, LilButt-face, AlPastorArnold}\",\"rememberedCastes\":\"{, Jade, Teal, Cerulean, Indigo, Violet, Mutant}\"}","breeder":"Nebula Catmar"}
   permanent: false

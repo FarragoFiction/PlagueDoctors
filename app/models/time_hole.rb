@@ -14,7 +14,8 @@ class TimeHole < ApplicationRecord
 
   def self.randomGrub
     #mostly will try to find a user wiggler
-    if rand > 0.999
+    random_number = rand()
+    if random_number < 0.99
       chosen_time_hole = TimeHole.user_generated.random.first
     end
 
