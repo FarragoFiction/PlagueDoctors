@@ -14,9 +14,10 @@ class TimeHolesController < ApplicationController
 
   def TIMEHOLE
     params.permit(:wigglerJSON, :permanent)
-    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
 
     @chosen_time_hole = TimeHole.randomGrub
+    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
+
 
     if(!@chosen_time_hole.permanent)
       @chosen_time_hole.delete
