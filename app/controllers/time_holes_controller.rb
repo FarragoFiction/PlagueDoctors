@@ -27,7 +27,7 @@ class TimeHolesController < ApplicationController
   end
 
   def timeholesize
-    return TimeHole.all.count
+    render text: TimeHole.all.count
   end
 
   def adoptTIMEHOLE

@@ -1,7 +1,7 @@
 class TimeHole < ApplicationRecord
   scope :user_generated,-> {  where(permanent: false)}
   scope :random, -> { order("RANDOM()")}
-
+  
   def name
     index =  wigglerJSON.index("nameJSON")
     return wigglerJSON[index,50]
