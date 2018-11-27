@@ -26,6 +26,10 @@ class TimeHolesController < ApplicationController
 
   end
 
+  def timeholesize
+    return TimeHole.all.count
+  end
+
   def adoptTIMEHOLE
     @chosen_time_hole = TimeHole.randomGrub
 

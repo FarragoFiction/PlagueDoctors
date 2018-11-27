@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post 'TIMEHOLE'
       get 'adoptTIMEHOLE'
       post 'abdicateTIMEHOLE'
+      get 'timeholesize'
     end
   end
   resources :paldemic_files do
