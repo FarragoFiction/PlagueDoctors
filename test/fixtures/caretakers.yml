@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  doll: MyString
+  desc: MyString
+  good_boi_points: 1
+  bad_boi_points: 1
+  login: MyString
+  password_digist: MyString
+
+two:
+  name: MyString
+  doll: MyString
+  desc: MyString
+  good_boi_points: 1
+  bad_boi_points: 1
+  login: MyString
+  password_digist: MyString

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @caretaker.name %>
+</p>
+
+<p>
+  <strong>Doll:</strong>
+  <%= @caretaker.doll %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @caretaker.desc %>
+</p>
+
+<p>
+  <strong>Good boi points:</strong>
+  <%= @caretaker.good_boi_points %>
+</p>
+
+<p>
+  <strong>Bad boi points:</strong>
+  <%= @caretaker.bad_boi_points %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @caretaker.login %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_caretaker_path(@caretaker) %> |
+<%= link_to 'Back', caretakers_path %>

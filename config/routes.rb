@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :caretakers
   resources :time_holes do
     collection do
       post 'TIMEHOLE'
