@@ -11,7 +11,6 @@ class CreateCaretakers < ActiveRecord::Migration[5.0]
       t.string   "password"
       t.datetime "created_at",      null: false
       t.datetime "updated_at",      null: false
-      t.string   "password_digest"
       t.timestamps
     end
   end
