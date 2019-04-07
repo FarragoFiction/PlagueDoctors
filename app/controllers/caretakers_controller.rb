@@ -22,7 +22,7 @@ class CaretakersController < ApplicationController
     else
       caretaker = Caretaker.find_by_login(params["login"])
       if(caretaker)
-        render plain: "Invalid password for existing login #{login}"
+        render plain: "Invalid password for existing login: '#{params['login']}'"
       else
         render plain: "Error Creating User. This is weird and JR thought this would never happen."
       end
