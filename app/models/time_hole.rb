@@ -2,12 +2,13 @@ class TimeHole < ApplicationRecord
   scope :user_generated,-> {  where(permanent: false)}
   scope :random, -> { order("RANDOM()")}
   belongs_to :caretaker
-  before_save :default_caretaker
 
-  def default_caretaker
-    if(caretaker == nil)
-      caretaker = Caretaker.default_caretaker
-    end
+  def caretaker
+    super || Caretaker.default_caretaker
+  end
+
+  def caretaker_id
+    super || Caretaker.default_caretaker.id
   end
 
 

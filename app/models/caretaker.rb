@@ -9,7 +9,8 @@ class Caretaker < ApplicationRecord
     #looks for a caretaker with zawhei's login, if they can't find it they just...make one
     ret = Caretaker.find_by_login("yggdrasilsYeoman")
     if ret == nil
-      ret = Caretaker.create!(name: "", doll: "", desc: "", login: "", good_boi_points: 85, bad_boi_points:85, password: "nidhoggsFavorite")
+      #in theory, YY being hacked would be 100% canon. but don't like, do anything dumb yeah? 
+      ret = Caretaker.create!(name: "Zawhei Bacama", doll: "Zawhei+Bacama%3A___AshgHhEYHhEYFYiT________q6uoAAAAAAAAA_wAAAAAFYiQHhEYFYiQFYiQDNhT___8gFUYA_wAA_wBJSUmAgIBjHbQxDloIgJoBNAEEgIz8CUAvAF4ASEAkOA%3D", desc: "Zawhei+Bacama%3A___AshgHhEYHhEYFYiT________q6uoAAAAAAAAA_wAAAAAFYiQHhEYFYiQFYiQDNhT___8gFUYA_wAA_wBJSUmAgIBjHbQxDloIgJoBNAEEgIz8CUAvAF4ASEAkOA%3D", login: "yggdrasilsYeoman", good_boi_points: 85, bad_boi_points:85, password: "nidhoggsFavorite")
     end
     return ret
   end
