@@ -7,6 +7,30 @@ class CaretakersController < ApplicationController
     @caretakers = Caretaker.all
   end
 
+  def confirmedLogin
+    puts params
+    # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
+    initialCaretaker = Caretaker.find_by_login(params["login"])
+
+    if(!initialCaretaker)
+      Caretaker.create(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"], good_boi_points: 1, bad_boi_points: 0)
+    end
+
+    caretaker = Caretaker.find_by_login(params["login"]).authenticate(params["password"])
+    if(caretaker)
+      render plain: "200"
+    else
+      caretaker = Caretaker.find_by_login(params["login"])
+      if(caretaker)
+        render plain: "Invalid password for existing login #{login}"
+      else
+        render plain: "Error Creating User. This is weird and JR thought this would never happen."
+      end
+
+    end
+
+  end
+
   # GET /caretakers/1
   # GET /caretakers/1.json
   def show

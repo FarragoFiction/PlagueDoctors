@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  resources :caretakers
+  resources :caretakers do
+    collection do
+      get 'confirmedLogin' #give me a username and password and i'll return if it exists or not
+
+    end
+    member do
+      put 'upvote'
+      put 'downvote'
+    end
+  end
   resources :time_holes do
     collection do
       post 'TIMEHOLE'
