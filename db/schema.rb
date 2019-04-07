@@ -10,19 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190403230056) do
-
-  create_table "auxes", force: :cascade do |t|
-    t.string   "name"
-    t.string   "doll"
-    t.string   "desc"
-    t.integer  "good_boi_points"
-    t.integer  "bad_boi_points"
-    t.string   "login"
-    t.string   "password"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
+ActiveRecord::Schema.define(version: 20190407135544) do
 
   create_table "caretakers", force: :cascade do |t|
     t.string   "name"
@@ -31,10 +19,12 @@ ActiveRecord::Schema.define(version: 20190403230056) do
     t.integer  "good_boi_points"
     t.integer  "bad_boi_points"
     t.string   "login"
-    t.string   "password"
+    t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "password_digest"
+    t.integer  "grubs_donated"
+    t.integer  "grubs_adopted"
+    t.index ["login"], name: "index_caretakers_on_login", unique: true
   end
 
   create_table "paldemic_files", force: :cascade do |t|
@@ -47,7 +37,6 @@ ActiveRecord::Schema.define(version: 20190403230056) do
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
     t.string   "pw"
-    t.         "integer",       default: "0",                                         null: false
     t.integer  "num_views",     default: 0,                                           null: false
     t.string   "description",   default: "A really cool paldemic file, I promise!!!", null: false
   end
@@ -55,20 +44,9 @@ ActiveRecord::Schema.define(version: 20190403230056) do
   create_table "time_holes", force: :cascade do |t|
     t.string   "wigglerJSON"
     t.boolean  "permanent"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "caretaker_id"
   end
 
 end

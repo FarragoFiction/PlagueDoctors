@@ -8,7 +8,7 @@ class CreateCaretakers < ActiveRecord::Migration[5.0]
       t.integer  "good_boi_points"
       t.integer  "bad_boi_points"
       t.string   "login"
-      t.string   "password"
+      t.string   "password_digest"
       t.datetime "created_at",      null: false
       t.datetime "updated_at",      null: false
       t.timestamps

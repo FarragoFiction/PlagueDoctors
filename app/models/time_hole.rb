@@ -1,7 +1,18 @@
 class TimeHole < ApplicationRecord
   scope :user_generated,-> {  where(permanent: false)}
   scope :random, -> { order("RANDOM()")}
-  
+  belongs_to :caretaker
+  before_save :default_caretaker
+
+  def default_caretaker
+    if(caretaker == nil)
+      caretaker = Caretaker.default_caretaker
+    end
+  end
+
+
+
+
   def name
     index =  wigglerJSON.index("nameJSON")
     return wigglerJSON[index,50]
