@@ -7,6 +7,18 @@ class CaretakersController < ApplicationController
     @caretakers = Caretaker.all
   end
 
+  def idFromLogin
+    params.permit(:login, :password)
+    caretaker = Caretaker.find_by_login(params["login"])
+    caretaker = caretaker.authenticate(params["password"])
+    id = nil
+    if(caretaker)
+      render plain: caretaker.id, status: 200
+    else
+      render plain: "NOPE", status: 404
+    end
+  end
+
   def confirmedLogin
     # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
     initialCaretaker = Caretaker.find_by_login(params["login"])

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :caretakers do
     collection do
       post 'confirmedLogin' #give me a username and password and i'll return if it exists or not
+      post 'idFromLogin'
     end
     member do
       put 'upvote'
