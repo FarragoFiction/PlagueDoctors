@@ -8,12 +8,12 @@ class CaretakersController < ApplicationController
   end
 
   def confirmedLogin
-    puts params
     # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
     initialCaretaker = Caretaker.find_by_login(params["login"])
 
     if(!initialCaretaker)
-      Caretaker.create(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"], good_boi_points: 1, bad_boi_points: 0)
+      puts "going to create a caretaker"
+      Caretaker.create!(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"], good_boi_points: 1, bad_boi_points: 0)
     end
 
     caretaker = Caretaker.find_by_login(params["login"]).authenticate(params["password"])

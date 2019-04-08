@@ -41,8 +41,17 @@ class TimeHolesController < ApplicationController
   end
 
   def abdicateTIMEHOLE
-    params.permit(:wigglerJSON, :permanent)
-    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
+    params.permit(:wigglerJSON, :permanent, :login, :password)
+    caretaker = Caretaker.find_by_login(params["login"])
+    caretaker = caretaker..authenticate(params["password"])
+    id = nil
+    if(caretaker)
+      id = caretaker.id
+      caretaker.grubs_donated += 1
+      caretaker.save!
+    end
+
+    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
 
     render text: "You monster.", status: 200
   end
@@ -104,6 +113,6 @@ class TimeHolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_hole_params
-      params.require(:time_hole).permit(:wigglerJSON, :permanent)
+      params.require(:time_hole).permit(:wigglerJSON, :permanent, :login, :password)
     end
 end
