@@ -13,10 +13,20 @@ class TimeHolesController < ApplicationController
   end
 
   def TIMEHOLE
-    params.permit(:wigglerJSON, :permanent)
+    params.permit(:wigglerJSON, :permanent, :login, :password)
+    caretaker = Caretaker.find_by_login(params["login"])
+    caretaker = caretaker..authenticate(params["password"])
+    id = nil
+    if(caretaker)
+      id = caretaker.id
+      caretaker.grubs_donated += 1
+      caretaker.grubs_adopted += 1
+
+      caretaker.save!
+    end
 
     @chosen_time_hole = TimeHole.randomGrub
-    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false)
+    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
 
 
     if(!@chosen_time_hole.permanent)
@@ -30,7 +40,17 @@ class TimeHolesController < ApplicationController
     render text: TimeHole.all.count
   end
 
+  #todo this needs to be a post so i can get params
   def adoptTIMEHOLE
+    params.permit(:login, :password)
+    caretaker = Caretaker.find_by_login(params["login"])
+    caretaker = caretaker..authenticate(params["password"])
+    id = nil
+    if(caretaker)
+      id = caretaker.id
+      caretaker.grubs_adopted += 1
+      caretaker.save!
+    end
     @chosen_time_hole = TimeHole.randomGrub
 
     if(!@chosen_time_hole.permanent)

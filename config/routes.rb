@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :time_holes do
     collection do
       post 'TIMEHOLE'
-      get 'adoptTIMEHOLE'
+      post 'adoptTIMEHOLE'
       post 'abdicateTIMEHOLE'
       get 'timeholesize'
     end
