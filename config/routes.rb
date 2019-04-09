@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       post 'idFromLogin'
     end
     member do
-      put 'upvote'
-      put 'downvote'
+      post 'upvote'
+      post 'downvote'
     end
   end
   resources :time_holes do
