@@ -1,5 +1,5 @@
 class CaretakersController < ApplicationController
-  before_action :set_caretaker, only: [:show, :edit, :update, :destroy]
+  before_action :set_caretaker, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /caretakers
   # GET /caretakers.json
@@ -19,6 +19,28 @@ class CaretakersController < ApplicationController
     end
   end
 
+  def upvote
+    @caretaker.good_boi_points += 1
+    if(@caretaker.save!)
+      render plain: "200", status: 200
+    else
+      render plain: "500", status: 500
+    end
+  end
+
+  def downvote
+    @caretaker.bad_boi_points += 1
+    if(@caretaker.save!)
+      render plain: "200", status: 200
+    else
+      render plain: "500", status: 500
+    end
+  end
+
+  def downvote
+
+  end
+
   def confirmedLogin
     # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
     initialCaretaker = Caretaker.find_by_login(params["login"])
@@ -30,7 +52,7 @@ class CaretakersController < ApplicationController
 
     caretaker = Caretaker.find_by_login(params["login"]).authenticate(params["password"])
     if(caretaker)
-      render plain: "200"
+      render plain: "200", status: 200
     else
       caretaker = Caretaker.find_by_login(params["login"])
       if(caretaker)
