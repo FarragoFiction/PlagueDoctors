@@ -63,7 +63,7 @@ class TimeHolesController < ApplicationController
   def abdicateTIMEHOLE
     params.permit(:wigglerJSON, :permanent, :login, :password)
     caretaker = Caretaker.find_by_login(params["login"])
-    caretaker = caretaker..authenticate(params["password"])
+    caretaker = caretaker.authenticate(params["password"])
     id = nil
     if(caretaker)
       id = caretaker.id

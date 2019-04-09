@@ -12,6 +12,7 @@ class Caretaker < ApplicationRecord
   def grubs_donated
     super || 0
   end
+
   def Caretaker.default_caretaker
     #looks for a caretaker with zawhei's login, if they can't find it they just...make one
     ret = Caretaker.find_by_login("yggdrasilsYeoman")
