@@ -36,10 +36,7 @@ class CaretakersController < ApplicationController
       render plain: "500", status: 500
     end
   end
-
-  def downvote
-
-  end
+  
 
   def confirmedLogin
     # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
