@@ -6,11 +6,11 @@ class Caretaker < ApplicationRecord
   has_many :time_holes
 
   def grubs_adopted
-    super || 0
+    read_attribute(:grubs_adopted) || 0
   end
 
   def grubs_donated
-    super || 0
+    read_attribute(:grubs_donated) || 0
   end
 
   def Caretaker.default_caretaker
