@@ -1,4 +1,6 @@
 class TimeHolesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :set_time_hole, only: [:show, :edit, :update, :destroy]
 
   # GET /time_holes

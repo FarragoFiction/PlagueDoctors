@@ -1,5 +1,6 @@
 class CaretakersController < ApplicationController
   before_action :set_caretaker, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  skip_before_action :verify_authenticity_token
 
   # GET /caretakers
   # GET /caretakers.json

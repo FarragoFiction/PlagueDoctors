@@ -1,5 +1,6 @@
 class PaldemicFilesController < ApplicationController
   before_action :set_paldemic_file, only: [:show, :edit, :update, :destroy, :downvote, :upvote]
+  skip_before_action :verify_authenticity_token
 
   #should be an update, with an id....hrrm, how to route?
   def downvote
