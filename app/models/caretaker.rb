@@ -17,6 +17,15 @@ class Caretaker < ApplicationRecord
     read_attribute(:grubs_adopted) || 0
   end
 
+  def timehole_shrink_rate
+    grubs_adopted_lazy - grubs_donated_lazy
+  end
+
+  def timehole_growth_rate
+    grubs_donated_lazy - grubs_adopted_lazy
+
+  end
+
   def grubs_donated_lazy
     read_attribute(:grubs_donated) || 0
   end
