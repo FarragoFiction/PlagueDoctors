@@ -13,6 +13,14 @@ class Caretaker < ApplicationRecord
     read_attribute(:grubs_donated) || 0
   end
 
+  def grubs_adopted_lazy
+    read_attribute(:grubs_adopted) || 0
+  end
+
+  def grubs_donated_lazy
+    read_attribute(:grubs_donated) || 0
+  end
+
   def total_points
     good_boi_points - bad_boi_points
   end
@@ -34,5 +42,26 @@ class Caretaker < ApplicationRecord
     bad_boi_points ||=0
     good_boi_points ||=0
   end
+
+  #i am doing so many metaprogramming shenanigans here, it shoudl probably be illegal
+  # but it acomplishes my goal of getting this done quick
+  def Caretaker.sortShenanigans(files,sortby, reverse)
+    #secretly the default is to have max first cuz thats what you'd expect
+    if reverse
+      if(Caretaker.has_attribute? sortby)
+        files = files.sort_by{|file| file[sortby]}
+      else
+        files =files.sort_by{|file| file.send sortby}
+      end
+    else
+      if(Caretaker.has_attribute? sortby)
+        files =files.sort_by{|file| file[sortby]}.reverse
+      else
+        files =files.sort_by{|file| file.send sortby}.reverse
+      end
+    end
+    return files
+  end
+
 
 end

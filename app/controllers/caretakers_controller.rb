@@ -9,7 +9,7 @@ class CaretakersController < ApplicationController
     sortby = params["sort"]
     puts "sort is #{sortby} is it an attribute? #{Caretaker.has_attribute? sortby}"
     #if nothing is passed in, default to total_votes
-    sortby ||= "total_votes"
+    sortby ||= "total_points"
     @caretakers = Caretaker.all
     if(!Caretaker.method_defined? sortby) && (!Caretaker.has_attribute? sortby)
       #if what is passed in is total gargbage , total votes
