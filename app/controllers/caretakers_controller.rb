@@ -18,7 +18,9 @@ class CaretakersController < ApplicationController
     end
     reverse = params["reverse"] == "true"
     puts "reverse is #{reverse}"
-    @caretakers = Caretaker.sortShenanigans(@caretakers, sortby,reverse)
+    limit = params["limit"].to_i
+    limit ||= @caretakers.length
+    @caretakers = Caretaker.sortShenanigans(@caretakers, sortby,reverse, limit)
 
   end
 

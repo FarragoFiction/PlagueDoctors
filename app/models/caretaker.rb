@@ -45,7 +45,7 @@ class Caretaker < ApplicationRecord
 
   #i am doing so many metaprogramming shenanigans here, it shoudl probably be illegal
   # but it acomplishes my goal of getting this done quick
-  def Caretaker.sortShenanigans(files,sortby, reverse)
+  def Caretaker.sortShenanigans(files,sortby, reverse, limit)
     #secretly the default is to have max first cuz thats what you'd expect
     if reverse
       if(Caretaker.has_attribute? sortby)
@@ -60,7 +60,7 @@ class Caretaker < ApplicationRecord
         files =files.sort_by{|file| file.send sortby}.reverse
       end
     end
-    return files
+    return files.first(limit)
   end
 
 
