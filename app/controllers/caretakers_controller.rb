@@ -5,7 +5,21 @@ class CaretakersController < ApplicationController
   # GET /caretakers
   # GET /caretakers.json
   def index
+    puts "params are #{params}"
+    sortby = params["sort"]
+    puts "sort is #{sortby} is it an attribute? #{Caretaker.has_attribute? sortby}"
+    #if nothing is passed in, default to total_votes
+    sortby ||= "total_votes"
     @caretakers = Caretaker.all
+    if(!Caretaker.method_defined? sortby) && (!Caretaker.has_attribute? sortby)
+      #if what is passed in is total gargbage , total votes
+      puts "couldn't find #{sortby} so using total points instead"
+      sortby ||= "total_points"
+    end
+    reverse = params["reverse"] == "true"
+    puts "reverse is #{reverse}"
+    @caretakers = Caretaker.sortShenanigans(@caretakers, sortby,reverse)
+
   end
 
   def idFromLogin
