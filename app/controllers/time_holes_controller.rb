@@ -81,10 +81,18 @@ class TimeHolesController < ApplicationController
   # GET /time_holes/new
   def new
     @time_hole = TimeHole.new
+    respond_to do |format|
+      format.html  { render :html => "haha nope, plz dont hax the server" }
+      format.json  { render :json => @caretakers }
+    end
   end
 
   # GET /time_holes/1/edit
   def edit
+    respond_to do |format|
+      format.html  { render :html => "haha nope, plz dont hax the server" }
+      format.json  { render :json => @caretakers }
+    end
   end
 
   # POST /time_holes

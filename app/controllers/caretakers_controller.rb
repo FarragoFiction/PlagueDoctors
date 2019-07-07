@@ -23,7 +23,11 @@ class CaretakersController < ApplicationController
       limit = @caretakers.length
     end
     @caretakers = Caretaker.sortShenanigans(@caretakers, sortby,reverse, limit)
-
+    #if json yes, else html
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render :json => @caretakers }
+    end
   end
 
   def idFromLogin
@@ -91,10 +95,18 @@ class CaretakersController < ApplicationController
   # GET /caretakers/new
   def new
     @caretaker = Caretaker.new
+    respond_to do |format|
+      format.html  { render :html => "haha nope, plz dont hax the server" }
+      format.json  { render :json => @caretakers }
+    end
   end
 
   # GET /caretakers/1/edit
   def edit
+    respond_to do |format|
+      format.html  { render :html => "haha nope, plz dont hax the server" }
+      format.json  { render :json => @caretakers }
+    end
   end
 
   # POST /caretakers
