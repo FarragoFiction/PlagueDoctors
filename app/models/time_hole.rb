@@ -2,7 +2,7 @@ class TimeHole < ApplicationRecord
   scope :user_generated,-> {  where(permanent: false)}
   scope :random, -> { order("RANDOM()")}
   belongs_to :caretaker
-
+  validates :wigglerJSON, uniqueness: true
   def caretaker
     super || Caretaker.default_caretaker
   end

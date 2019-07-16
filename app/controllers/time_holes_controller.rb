@@ -28,7 +28,11 @@ class TimeHolesController < ApplicationController
     end
 
     @chosen_time_hole = TimeHole.randomGrub
-    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
+    @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
+    if(!@new_time_hole.save)
+      render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
+      return
+    end
 
 
     if(!@chosen_time_hole.permanent)
@@ -73,8 +77,11 @@ class TimeHolesController < ApplicationController
       caretaker.save!
     end
 
-    @new_time_hole = TimeHole.create(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
-
+    @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
+    if(!@new_time_hole.save)
+      render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
+      return
+    end
     render text: "You monster.", status: 200
   end
 
