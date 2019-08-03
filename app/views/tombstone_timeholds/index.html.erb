@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tombstone Timeholds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tombstonejson</th>
+      <th>Permanent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tombstone_timeholds.each do |tombstone_timehold| %>
+      <tr>
+        <td><%= tombstone_timehold.tombstoneJSON %></td>
+        <td><%= tombstone_timehold.permanent %></td>
+        <td><%= link_to 'Show', tombstone_timehold %></td>
+        <td><%= link_to 'Edit', edit_tombstone_timehold_path(tombstone_timehold) %></td>
+        <td><%= link_to 'Destroy', tombstone_timehold, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tombstone Timehold', new_tombstone_timehold_path %>

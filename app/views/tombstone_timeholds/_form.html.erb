@@ -1,0 +1,27 @@
+<%= form_for(tombstone_timehold) do |f| %>
+  <% if tombstone_timehold.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tombstone_timehold.errors.count, "error") %> prohibited this tombstone_timehold from being saved:</h2>
+
+      <ul>
+      <% tombstone_timehold.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tombstoneJSON %>
+    <%= f.text_area :tombstoneJSON %>
+  </div>
+
+  <div class="field">
+    <%= f.label :permanent %>
+    <%= f.check_box :permanent %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

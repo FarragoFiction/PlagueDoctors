@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tombstonejson:</strong>
+  <%= @tombstone_timehold.tombstoneJSON %>
+</p>
+
+<p>
+  <strong>Permanent:</strong>
+  <%= @tombstone_timehold.permanent %>
+</p>
+
+<%= link_to 'Edit', edit_tombstone_timehold_path(@tombstone_timehold) %> |
+<%= link_to 'Back', tombstone_timeholds_path %>

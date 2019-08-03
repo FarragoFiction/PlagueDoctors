@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190407135544) do
+ActiveRecord::Schema.define(version: 20190803213745) do
 
   create_table "caretakers", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 20190407135544) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "caretaker_id"
+  end
+
+  create_table "tombstone_timeholds", force: :cascade do |t|
+    t.string   "tombstoneJSON"
+    t.boolean  "permanent"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
