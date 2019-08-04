@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
 
     collection do
-      post 'getRandomSet'
+      get 'getRandomSet'
       post 'createFromLOMAT'
       put 'updateFromLOMAT'
     end
