@@ -1,5 +1,5 @@
 class TombstoneTimeholdsController < ApplicationController
-  before_action :set_tombstone_timehold, only: [:show, :edit, :update, :destroy]
+  before_action :set_tombstone_timehold, only: [:show, :edit, :update, :destroy, :upvote, :downvote,:updateFromLOMAT]
 
   # GET /tombstone_timeholds
   # GET /tombstone_timeholds.json
@@ -90,7 +90,8 @@ class TombstoneTimeholdsController < ApplicationController
   end
 
   def upvote
-    @tombstone_timehold.rank += 1
+    @tombstone_timehold.rating ||= 0
+    @tombstone_timehold.rating += 1
     if(@tombstone_timehold.save!)
       render plain: "200", status: 200
     else
@@ -99,7 +100,8 @@ class TombstoneTimeholdsController < ApplicationController
   end
 
   def downvote
-    @tombstone_timehold.rank += -1
+    @tombstone_timehold.rating ||= 0
+    @tombstone_timehold.rating += -1
     if(@tombstone_timehold.save!)
       render plain: "200", status: 200
     else
@@ -116,11 +118,11 @@ class TombstoneTimeholdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def tombstone_timehold_params
-    params.require(:tombstone_timehold).permit(:tombstoneJSON, :permanent)
+    params.require(:tombstone_timehold).permit(:tombstoneJSON, :permanent, :rating)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tombstone_timehold_params_from_lomat
-    params.permit(:tombstoneJSON, :permanent)
+    params.permit(:tombstoneJSON, :permanent, :rating)
   end
 end
