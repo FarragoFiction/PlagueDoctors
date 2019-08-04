@@ -9,7 +9,8 @@ class TombstoneTimeholdsController < ApplicationController
 
   def getRandomSet
     true_random = TombstoneTimehold.all.sample(45)
-    most_popular = TombstoneTimehold.all.sort { |a, b| b.rating <=> a.rating }.sample(40)
+    #get the 113 most popular ones, and then randomly pick 40 from them (sort of a soft boundry)
+    most_popular = TombstoneTimehold.all.sort { |a, b| b.rating <=> a.rating }.first(113).sample(40)
     ret = (most_popular + true_random).uniq
     render json: ret.as_json, status: 200
   end
