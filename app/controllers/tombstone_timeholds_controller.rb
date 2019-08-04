@@ -7,6 +7,13 @@ class TombstoneTimeholdsController < ApplicationController
     @tombstone_timeholds = TombstoneTimehold.all
   end
 
+  def getRandomSet
+    true_random = TombstoneTimehold.all.sample(45)
+    most_popular = TombstoneTimehold.all.sort { |a, b| b.rating <=> a.rating }.sample(40)
+    ret = (most_popular + true_random).uniq
+    render json: ret.as_json, status: 200
+  end
+
   # GET /tombstone_timeholds/1
   # GET /tombstone_timeholds/1.json
   def show
