@@ -69,6 +69,6 @@ class TombstoneTimeholdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tombstone_timehold_params
-      params.require(:tombstone_timehold).permit(:tombstoneJSON, :permanent)
+      params.permit(:tombstoneJSON, :permanent)
     end
 end
