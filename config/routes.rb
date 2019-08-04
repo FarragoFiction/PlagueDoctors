@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :tombstone_timeholds
+  resources :tombstone_timeholds do
+    member do
+      put 'upvote'
+      put 'downvote'
+    end
+
+    collection do
+      post 'getRandomSet'
+      post 'createFromLOMAT'
+      put 'updateFromLOMAT'
+    end
+  end
   resources :caretakers do
     collection do
       post 'confirmedLogin' #give me a username and password and i'll return if it exists or not

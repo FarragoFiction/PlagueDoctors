@@ -51,6 +51,34 @@ class TombstoneTimeholdsController < ApplicationController
     end
   end
 
+  def createFromLOMAT
+    @tombstone_timehold = TombstoneTimehold.new(tombstone_timehold_params_from_lomat)
+
+    respond_to do |format|
+      if @tombstone_timehold.save
+        format.html { redirect_to @tombstone_timehold, notice: 'Tombstone timehold was successfully created.' }
+        format.json { render :show, status: :created, location: @tombstone_timehold }
+      else
+        format.html { render :new }
+        format.json { render json: @tombstone_timehold.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /tombstone_timeholds/1
+  # PATCH/PUT /tombstone_timeholds/1.json
+  def updateFromLOMAT
+    respond_to do |format|
+      if @tombstone_timehold.update(tombstone_timehold_params_from_lomat)
+        format.html { redirect_to @tombstone_timehold, notice: 'Tombstone timehold was successfully updated.' }
+        format.json { render :show, status: :ok, location: @tombstone_timehold }
+      else
+        format.html { render :edit }
+        format.json { render json: @tombstone_timehold.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /tombstone_timeholds/1
   # DELETE /tombstone_timeholds/1.json
   def destroy
@@ -61,6 +89,25 @@ class TombstoneTimeholdsController < ApplicationController
     end
   end
 
+  def upvote
+    @tombstone_timehold.rank += 1
+    if(@tombstone_timehold.save!)
+      render plain: "200", status: 200
+    else
+      render plain: "500", status: 500
+    end
+  end
+
+  def downvote
+    @tombstone_timehold.rank += -1
+    if(@tombstone_timehold.save!)
+      render plain: "200", status: 200
+    else
+      render plain: "500", status: 500
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tombstone_timehold
@@ -68,7 +115,12 @@ class TombstoneTimeholdsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def tombstone_timehold_params
-      params.permit(:tombstoneJSON, :permanent)
-    end
+  def tombstone_timehold_params
+    params.require(:tombstone_timehold).permit(:tombstoneJSON, :permanent)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tombstone_timehold_params_from_lomat
+    params.permit(:tombstoneJSON, :permanent)
+  end
 end
