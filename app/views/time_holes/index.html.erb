@@ -26,7 +26,9 @@
 
         <td><%= time_hole.permanent %></td>
         <td><%=link_to time_hole.caretaker.name, caretaker_path(time_hole.caretaker) %></td>
-        <td><textarea rows="3" cols="50"><%=time_hole.parsedPetJSON["dollDATAURL"] %></textarea></td>
+        <td><textarea rows="3" cols="50"><%=time_hole.parsedPetJSON["dollDATAURL"] %></textarea>
+          <a target="blank" href = "http://www.farragofiction.com/DollSim?<%=time_hole.parsedPetJSON["dollDATAURL"]%>">Doll</a>
+        </td>
         <% TimeHole.json_keys.each do |key| %>
           <td><%=time_hole.parsedPetJSON[key] %></td>
 
