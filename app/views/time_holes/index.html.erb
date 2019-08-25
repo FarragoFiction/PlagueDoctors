@@ -5,10 +5,14 @@
 <table>
   <thead>
     <tr>
-      <th>Wigglerjson</th>
+      <th>Name</th>
       <th>Breeder</th>
       <th>Permanent</th>
       <th>Caretaker</th>
+      <%TimeHole.json_keys.each do |key| %>
+      <th><%=key %></th>
+
+      <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +25,10 @@
 
         <td><%= time_hole.permanent %></td>
         <td><%=link_to time_hole.caretaker.name, caretaker_path(time_hole.caretaker) %></td>
+        <% TimeHole.json_keys.each do |key| %>
+          <td style="width:100px;overflow: auto"><%=time_hole.parsedPetJSON[key] %></td>
+
+        <% end %>
 
         <td><%= link_to 'Show', time_hole %></td>
         <td><%= link_to 'Edit', edit_time_hole_path(time_hole) %></td>

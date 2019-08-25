@@ -12,16 +12,40 @@ class TimeHole < ApplicationRecord
   end
 
 
-
-
-  def name
-    index =  wigglerJSON.index("nameJSON")
-    return wigglerJSON[index,50]
+  def parsedPetJSON
+    begin
+      return JSON.parse(JSON.parse(wigglerJSON)["pet"])
+    rescue JSON::ParserError
+      return {}
+    end
   end
 
+  def parsedJSON
+    begin
+      return JSON.parse(wigglerJSON)
+    rescue JSON::ParserError
+      return {}
+    end
+
+  end
+
+  #["lastPlayed", "isempress", "hatchDate", "lastFed", "dollDATAURL", "boredomJson", "nameJSON", "healthJson", "TYPE", "corrupt", "purified", "patience", "idealistic", "curious", "loyal", "energetic", "external", "remembered", "rememberedNames", "rememberedCastes"]
+
+
+  def TimeHole.json_keys
+    ["dollDATAURL","TYPE", "isempress","corrupt", "purified", "lastPlayed", "hatchDate", "lastFed", "patience", "idealistic", "curious", "loyal", "energetic", "external", "remembered", "rememberedNames", "rememberedCastes"]
+  end
+
+  def name
+    return parsedPetJSON["nameJSON"]
+  end
+
+
+
+
+
   def breeder
-    index =  wigglerJSON.index("breeder")
-    return wigglerJSON[index,100]
+    parsedJSON["breeder"]
   end
 
   def self.randomGrub
