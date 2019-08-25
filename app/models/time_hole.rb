@@ -33,7 +33,7 @@ class TimeHole < ApplicationRecord
 
 
   def TimeHole.json_keys
-    ["dollDATAURL","TYPE", "isempress","corrupt", "purified", "lastPlayed", "hatchDate", "lastFed", "patience", "idealistic", "curious", "loyal", "energetic", "external", "remembered", "rememberedNames", "rememberedCastes"]
+    ["TYPE", "isempress","corrupt", "purified", "lastPlayed", "hatchDate", "lastFed", "patience", "idealistic", "curious", "loyal", "energetic", "external", "remembered", "rememberedNames", "rememberedCastes"]
   end
 
   def name
