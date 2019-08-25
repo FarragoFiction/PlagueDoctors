@@ -1,6 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%=@time_holes.count %> Time Holes</h1>
+<h1>
+  <%=@time_holes.count %> Time Holes,
+  <%=TimeHole.number_eggs %> Eggs,
+  <%=TimeHole.number_grubs %> Grubs,
+  <%=TimeHole.number_treebabs%> Tree Babs,
+  <%=TimeHole.number_cocoons %> Cocoons,
+  <%=TimeHole.number_trolls %> Trolls,
+  <%=TimeHole.number_corrupt %> Corruption,
+  <%=TimeHole.number_purified %> Purification
+</h1>
 
 <table>
   <thead>

@@ -1,6 +1,7 @@
 class TimeHole < ApplicationRecord
   scope :user_generated,-> {  where(permanent: false)}
   scope :random, -> { order("RANDOM()")}
+
   belongs_to :caretaker
   validates :wigglerJSON, uniqueness: true
   def caretaker
@@ -9,6 +10,34 @@ class TimeHole < ApplicationRecord
 
   def caretaker_id
     super || Caretaker.default_caretaker.id
+  end
+
+  def self.number_corrupt
+    return TimeHole.all.select{|x| x.parsedPetJSON["corrupt"] == "true"}.count
+  end
+
+  def self.number_purified
+    return TimeHole.all.select{|x| x.parsedPetJSON["purified"] == "true"}.count
+  end
+
+  def self.number_grubs
+    return TimeHole.all.select{|x| x.parsedPetJSON["TYPE"] == "GRUB"}.count
+  end
+
+  def self.number_treebabs
+    return TimeHole.all.select{|x| x.parsedPetJSON["TYPE"] == "TREEBAB"}.count
+  end
+
+  def self.number_eggs
+    return TimeHole.all.select{|x| x.parsedPetJSON["TYPE"] == "EGG"}.count
+  end
+
+  def self.number_cocoons
+    return TimeHole.all.select{|x| x.parsedPetJSON["TYPE"] == "COCOON"}.count
+  end
+
+  def self.number_trolls
+    return TimeHole.all.select{|x| x.parsedPetJSON["TYPE"] == "TROLL"}.count
   end
 
 
