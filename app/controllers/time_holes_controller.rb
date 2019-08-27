@@ -39,7 +39,7 @@ class TimeHolesController < ApplicationController
       return
     end
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"TIMEHOLE Donate , Caretaker: #{caretaker.id}, Wiggler Name: #{@new_time_hole.name}"))
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"TIMEHOLE Adopt"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"TIMEHOLE Adopt, Caretaker: #{caretaker.id}, Wiggler Name: #{@chosen_time_hole.name}"))
 
 
     if(!@chosen_time_hole.permanent)
@@ -69,7 +69,7 @@ class TimeHolesController < ApplicationController
     if(!@chosen_time_hole.permanent)
       @chosen_time_hole.delete
     end
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"Adopt"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"Adopt, Caretaker: #{caretaker.id}, Wiggler Name: #{@chosen_time_hole.name}"))
 
     render json: @chosen_time_hole.as_json, status: 200
 
