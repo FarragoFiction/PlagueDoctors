@@ -7,11 +7,15 @@ class TimeHolesController < ApplicationController
   # GET /time_holes.json
   def index
     @time_holes = TimeHole.all
+    puts "request is #{request.remote_ip}"
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Show All"))
   end
 
   # GET /time_holes/1
   # GET /time_holes/1.json
   def show
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Show One"))
+
   end
 
   def TIMEHOLE
