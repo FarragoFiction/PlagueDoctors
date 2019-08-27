@@ -77,7 +77,7 @@ class TimeHolesController < ApplicationController
 
   def abdicateTIMEHOLE
     params.permit(:wigglerJSON, :permanent, :login, :password)
-    if(!self.timehole_accepts_ip? request.ip)
+    if(!AllSeeingEye.timehole_accepts_ip? request.ip)
       render json: {error: "In order to stop floods, only 13 grubs per caretaker may be callouslly abandoned into the TIMEHOLE every 24 hours."}, status: 400
       return
     end
