@@ -33,10 +33,13 @@ class TimeHolesController < ApplicationController
 
     @chosen_time_hole = TimeHole.randomGrub
     @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
+
     if(!@new_time_hole.save)
       render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Donate"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"Adopt"))
 
 
     if(!@chosen_time_hole.permanent)
@@ -66,6 +69,8 @@ class TimeHolesController < ApplicationController
     if(!@chosen_time_hole.permanent)
       @chosen_time_hole.delete
     end
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"Adopt"))
+
     render json: @chosen_time_hole.as_json, status: 200
 
   end
@@ -86,6 +91,8 @@ class TimeHolesController < ApplicationController
       render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Donate"))
+
     render text: "You monster.", status: 200
   end
 
@@ -96,6 +103,8 @@ class TimeHolesController < ApplicationController
       format.html  { render :html => "haha nope, plz dont hax the server" }
       format.json  { render :json => @caretakers }
     end
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"New"))
+
   end
 
   # GET /time_holes/1/edit
@@ -104,12 +113,15 @@ class TimeHolesController < ApplicationController
       format.html  { render :html => "haha nope, plz dont hax the server" }
       format.json  { render :json => @caretakers }
     end
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Edit"))
+
   end
 
   # POST /time_holes
   # POST /time_holes.json
   def create
     @time_hole = TimeHole.new(time_hole_params)
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Create"))
 
     respond_to do |format|
       if @time_hole.save
@@ -125,6 +137,7 @@ class TimeHolesController < ApplicationController
   # PATCH/PUT /time_holes/1
   # PATCH/PUT /time_holes/1.json
   def update
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Update"))
     respond_to do |format|
       if @time_hole.update(time_hole_params)
         format.html { redirect_to @time_hole, notice: 'Time hole was successfully updated.' }
@@ -139,6 +152,7 @@ class TimeHolesController < ApplicationController
   # DELETE /time_holes/1
   # DELETE /time_holes/1.json
   def destroy
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Destroy"))
     @time_hole.destroy
     respond_to do |format|
       format.html { redirect_to time_holes_url, notice: 'Time hole was successfully destroyed.' }
