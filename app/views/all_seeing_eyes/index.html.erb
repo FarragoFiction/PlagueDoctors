@@ -7,6 +7,7 @@
 <table id = "thing">
   <thead>
     <tr>
+      <th>Time</th>
       <th>Ip</th>
       <th>Message</th>
       <th colspan="3"></th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @all_seeing_eyes.each do |all_seeing_eye| %>
       <tr>
+        <td><%= all_seeing_eye.created_at %></td>
         <td><%= all_seeing_eye.ip %></td>
         <td><%= all_seeing_eye.message %></td>
       </tr>
