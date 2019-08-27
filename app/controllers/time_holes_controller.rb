@@ -38,7 +38,7 @@ class TimeHolesController < ApplicationController
       render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"TIMEHOLE Donate"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"TIMEHOLE Donate , Caretaker: #{caretaker.id}, Wiggler Name: #{@new_time_hole.name}"))
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"TIMEHOLE Adopt"))
 
 
@@ -97,7 +97,7 @@ class TimeHolesController < ApplicationController
       render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Abdicate"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Abdicate, Caretaker: #{caretaker.id}, Wiggler Name: #{@new_time_hole.name} "))
 
     render text: "You monster.", status: 200
   end
