@@ -38,8 +38,8 @@ class TimeHolesController < ApplicationController
       render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Donate"))
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"Adopt"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"TIMEHOLE Donate"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@chosen_time_hole,"TIMEHOLE Adopt"))
 
 
     if(!@chosen_time_hole.permanent)
@@ -77,6 +77,11 @@ class TimeHolesController < ApplicationController
 
   def abdicateTIMEHOLE
     params.permit(:wigglerJSON, :permanent, :login, :password)
+    if(!self.timehole_accepts_ip? request.ip)
+      render json: {error: "In order to stop floods, only 13 grubs per caretaker may be callouslly abandoned into the TIMEHOLE every 24 hours."}, status: 400
+      return
+    end
+
     caretaker = Caretaker.find_by_login(params["login"])
     caretaker = caretaker.authenticate(params["password"])
     id = nil
@@ -91,7 +96,7 @@ class TimeHolesController < ApplicationController
       render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Donate"))
+    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Abdicate"))
 
     render text: "You monster.", status: 200
   end
