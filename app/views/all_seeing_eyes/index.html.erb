@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<div style = 'background-image: url('<%=image_path ('friend.png') %>')'>
-<h1>All Seeing Eyes</h1>
+<%= content_tag :div, class: "background-image-holder",
+                style: "background: url('#{image_path('friend.png')}')" do%>
+  <h1>All Seeing Eyes</h1>
 
 <table id = "thing">
   <thead>
@@ -21,4 +22,4 @@
     <% end %>
   </tbody>
 </table>
-</div>
+<%end %>
