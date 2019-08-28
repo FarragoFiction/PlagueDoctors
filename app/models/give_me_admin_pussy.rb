@@ -1,0 +1,2 @@
+class GiveMeAdminPussy < ApplicationRecord
+end

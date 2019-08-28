@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
 
     render html: "hello world"
   end
+
+  def is_admin
+    return params["admin"] == GiveMeAdminPussy.first.demand
+  end
 end

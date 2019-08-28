@@ -6,6 +6,15 @@ class CaretakersController < ApplicationController
   # GET /caretakers.json
   def index
     puts "params are #{params}"
+    if(params["format"] != "json")
+      if(is_admin)
+        AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Show All Caretakers"))
+      else
+        AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show All Caretakers"))
+        render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+        return
+      end
+    end
     sortby = params["sort"]
     puts "sort is #{sortby} is it an attribute? #{Caretaker.has_attribute? sortby}"
     #if nothing is passed in, default to total_votes
@@ -85,6 +94,12 @@ class CaretakersController < ApplicationController
   # GET /caretakers/1
   # GET /caretakers/1.json
   def show
+    if(is_admin)
+      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Show One Caretaker"))
+    else
+      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show One Caretaker"))
+      render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+    end
   end
 
   # GET /caretakers/new
