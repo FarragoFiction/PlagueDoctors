@@ -7,11 +7,13 @@ class TimeHolesController < ApplicationController
   # GET /time_holes.json
   def index
     @time_holes = TimeHole.all
-    if(is_admin)
-      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Admin Show All TimeHoles"))
-    else
-      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show All TimeHoles"))
-      render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+    if(params["format"] != "json")
+      if(is_admin)
+        AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Admin Show All TimeHoles"))
+      else
+        AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show All TimeHoles"))
+        render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+      end
     end
   end
 
