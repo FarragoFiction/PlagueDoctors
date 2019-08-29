@@ -94,11 +94,13 @@ class CaretakersController < ApplicationController
   # GET /caretakers/1
   # GET /caretakers/1.json
   def show
-    if(is_admin)
-      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Show One Caretaker"))
-    else
-      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show One Caretaker"))
-      render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+    if(params["format"] != "json")
+      if(is_admin)
+        AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Show One Caretaker"))
+      else
+        AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show One Caretaker"))
+        render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+      end
     end
   end
 
