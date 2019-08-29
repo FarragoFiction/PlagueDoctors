@@ -4,6 +4,14 @@ class TimeHole < ApplicationRecord
 
   belongs_to :caretaker
   validates :wigglerJSON, uniqueness: true
+  validate :no_adults
+
+  def no_adults
+    puts "checking no adults #{parsedPetJSON["TYPE"]}"
+    valid_types = ["GRUB","TREEBAB","EGG","COCOON"]
+    return valid_types.include?(parsedPetJSON["TYPE"])
+  end
+
   def caretaker
     super || Caretaker.default_caretaker
   end

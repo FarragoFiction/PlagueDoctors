@@ -45,7 +45,7 @@ class TimeHolesController < ApplicationController
     @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
 
     if(!@new_time_hole.save)
-      render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
+      render json: {error: "Look. No clones. No pupated trolls. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
       return
     end
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"TIMEHOLE Donate , Caretaker: #{caretaker.id}, Wiggler Name: #{@new_time_hole.name}"))
