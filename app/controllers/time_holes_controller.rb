@@ -90,7 +90,7 @@ class TimeHolesController < ApplicationController
     caretaker = Caretaker.find_by_login(params["login"])
     if(!AllSeeingEye.timehole_accepts_ip? request.ip)
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(caretaker,"Abandon Limit Reached"))
-      render json: {error: "In order to stop floods, only 13 grubs per caretaker may be callouslly abandoned into the TIMEHOLE every 24 hours."}, status: 400
+      render json: {error: "In order to stop floods, only #{AllSeeingEye.abandon_limit} grubs per caretaker (calculated based on current conditions) may be callouslly abandoned into the TIMEHOLE every 24 hours."}, status: 400
       return
     end
 
