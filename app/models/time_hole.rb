@@ -5,11 +5,18 @@ class TimeHole < ApplicationRecord
   belongs_to :caretaker
   validates :wigglerJSON, uniqueness: true
   validate :no_adults
+  before_save :censor
 
   def no_adults
     puts "checking no adults #{parsedPetJSON["TYPE"]}"
     valid_types = ["GRUB","TREEBAB","EGG","COCOON"]
     return valid_types.include?(parsedPetJSON["TYPE"])
+  end
+
+  def censor
+    veryBadWords = ["fag","retard","nigg","cunt","trap","pumpkin","cuck","jizz","anal","pussy","penis","peen","dick","sex","vagina","fuck"];
+    veryBadWords.each{|x| wigglerJSON.gsub!(/#{x}/i,"***")}
+    "nothing to see"
   end
 
   def caretaker
