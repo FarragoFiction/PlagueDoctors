@@ -169,11 +169,19 @@ class TimeHolesController < ApplicationController
   # DELETE /time_holes/1.json
   def destroy
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Destroy"))
-    @time_hole.destroy
-    respond_to do |format|
-      format.html { redirect_to time_holes_url, notice: 'Time hole was successfully destroyed.' }
-      format.json { head :no_content }
+    if(!@time_hole.permanent)
+      @time_hole.destroy
+      respond_to do |format|
+        format.html { redirect_to time_holes_url, notice: 'Time hole was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to time_holes_url, notice: 'Pleaes dont destroy canon grubs' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private
