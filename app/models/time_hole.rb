@@ -5,7 +5,9 @@ class TimeHole < ApplicationRecord
   belongs_to :caretaker
   validates :wigglerJSON, uniqueness: true
   validate :no_adults
-  before_save :censor
+  #future JR TODO: if you blindly sensor the entire wiggler json, you'll corrupt the doll strings.
+  # you need to actually parse the wiggler json and only change wiggler name or anything else visible
+  #before_save :censor
 
   def no_adults
     puts "checking no adults #{parsedPetJSON["TYPE"]}"
