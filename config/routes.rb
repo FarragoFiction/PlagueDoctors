@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :all_seeing_eyes
   resources :tombstone_timeholds do
     member do
-      put 'upvote'
-      put 'downvote'
+      get 'upvote'
+      get 'downvote'
     end
 
     collection do
