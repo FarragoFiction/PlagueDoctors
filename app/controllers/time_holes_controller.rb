@@ -125,11 +125,13 @@ class TimeHolesController < ApplicationController
 
   # GET /time_holes/1/edit
   def edit
-    respond_to do |format|
-      format.html  { render :html => "haha nope, plz dont hax the server" }
-      format.json  { render :json => @caretakers }
-    end
-    AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Edit"))
+    if(!is_admin)
+      respond_to do |format|
+        format.html  { render :html => "haha nope, plz dont hax the server" }
+        format.json  { render :json => @caretakers }
+      end
+      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Edit"))
+      end
 
   end
 
