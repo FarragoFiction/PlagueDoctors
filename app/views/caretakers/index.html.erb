@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @caretakers.count %>Caretakers</h1>
+<h1><%= @caretakers.count %> Caretakers, <%=Caretaker.number_corruption_sources %> Corruption Sources = <%=100* Caretaker.number_corruption_sources/@caretakers.count %>% Complete</h1>
 
 <table>
   <thead>

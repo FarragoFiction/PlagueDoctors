@@ -52,6 +52,10 @@ class Caretaker < ApplicationRecord
     good_boi_points ||=0
   end
 
+  def self.number_corruption_sources
+    return Caretaker.all.select{|x| x.corruption_source==true}.count
+  end
+
   #i am doing so many metaprogramming shenanigans here, it shoudl probably be illegal
   # but it acomplishes my goal of getting this done quick
   def Caretaker.sortShenanigans(files,sortby, reverse, limit)
