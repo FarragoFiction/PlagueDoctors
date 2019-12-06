@@ -10,9 +10,9 @@ class TimeHole < ApplicationRecord
   #before_save :censor
   #
   after_create do
-    puts "JR NOTE: OWO WHATS THIS, NOTICING YOUR SINS #{corrupt} #{caretaker}"
     #you can't undo your sins
-    if(corrupt)
+    if(corrupt && caretaker && !caretaker.corrupt)
+      puts "JR NOTE: OWO WHATS THIS, NOTICING YOUR SINS #{corrupt} #{caretaker_id}"
       caretaker.corruption_source = true
       caretaker.save
     end
