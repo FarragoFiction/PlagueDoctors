@@ -11,7 +11,7 @@ class TimeHole < ApplicationRecord
   #
   after_create do
     #you can't undo your sins
-    if(corrupt && caretaker && !caretaker.corrupt)
+    if(corrupt && caretaker && !caretaker.corruption_source)
       puts "JR NOTE: OWO WHATS THIS, NOTICING YOUR SINS #{corrupt} #{caretaker_id}"
       caretaker.corruption_source = true
       caretaker.save
