@@ -8,6 +8,15 @@ class TimeHole < ApplicationRecord
   #future JR TODO: if you blindly sensor the entire wiggler json, you'll corrupt the doll strings.
   # you need to actually parse the wiggler json and only change wiggler name or anything else visible
   #before_save :censor
+  #
+  after_create do
+    puts "JR NOTE: OWO WHATS THIS, NOTICING YOUR SINS #{corrupt} #{caretaker}"
+    #you can't undo your sins
+    if(corrupt)
+      caretaker.corruption_source = true
+      caretaker.save
+    end
+  end
 
   def no_adults
     puts "checking no adults #{parsedPetJSON["TYPE"]}"
@@ -27,6 +36,10 @@ class TimeHole < ApplicationRecord
 
   def caretaker_id
     super || Caretaker.default_caretaker.id
+  end
+
+  def corrupt
+    parsedPetJSON["corrupt"]
   end
 
   def self.number_corrupt

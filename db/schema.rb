@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190828020255) do
+ActiveRecord::Schema.define(version: 20191205234648) do
 
   create_table "all_seeing_eyes", force: :cascade do |t|
     t.string   "ip"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20190828020255) do
     t.integer  "bad_boi_points"
     t.string   "login"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "grubs_donated"
     t.integer  "grubs_adopted"
+    t.boolean  "corruption_source"
     t.index ["login"], name: "index_caretakers_on_login", unique: true
   end
 

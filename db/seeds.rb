@@ -48,8 +48,11 @@ eirikr = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"ha
 zawhei = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\":\"1542840462569\",\"lastFed\":\"1542840462569\",\"dollDATAURL\":\"Zawhei+Bacama%3A___HBQHhEYHhEYFYiSFr_94nuZzk9AAAAAAAAAA_wAAAAATExMAAAApHVMgFUYA_wAA_wBJSUkAQYIAIEEIgJoBNAEEgIz8wC8AXgBIQCQ4\",\"boredomJson\":\"0\",\"nameJSON\":\"Zawhei Bacama\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"true\",\"purified\":\"false\",\"patience\":\"0\",\"idealistic\":\"0\",\"curious\":\"0\",\"loyal\":\"0\",\"energetic\":\"113\",\"external\":\"0\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"yggdrasilsYeoman"}'
 hagala  = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\":\"1542840462569\",\"lastFed\":\"1542840462569\",\"dollDATAURL\":\"Hagala+Folnir%3A___HBRhdPtjHbRAAICFr_94nuZzk9AAAAAAAAAA_wAAAAATExMAAAApHVMgFUYA_wAA_wBJSUljHbQxDloIgLkBcgjwPGGICFYDHAY4EQCJgA%3D%3D",\"boredomJson\":\"0\",\"nameJSON\":\"Hagala Folnir\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"true\",\"purified\":\"false\",\"patience\":\"0\",\"idealistic\":\"0\",\"curious\":\"0\",\"loyal\":\"0\",\"energetic\":\"-113\",\"external\":\"0\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"yggdrasilsYeoman"}'
 #adult prince: Zawhei+Bacama%3A___AshgHhEYHhEYFYiT________q6uoAAAAAAAAA_wAAAAAFYiQHhEYFYiQFYiQDNhT___8gFUYA_wAA_wBJSUmAgIBjHbQxDloIgJoBNAEEgIz8CUAvAF4ASEAkOA%3D
-permanents = [karkat,feferi,terezi,sollux,vriska,kanaya,tavros,eridan,gamzee,nepeta,aradia,equius,despap,eirikr,zawhei,hagala]
 
+test  = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\":\"1542840462569\",\"lastFed\":\"1542840462569\",\"dollDATAURL\":\"Ninja+George+Puff+V%3A___HBQ_LFtjHbQxDlpjHbSSKf8xDlpjHbRjHbRjHbQAAABLS0s6OjoREREAAAAREREzMzPExMRjHbQxDloIgEpAJSEoDF_YaDQBQQCg4A%3D%3D\",\"boredomJson\":\"0\",\"nameJSON\":\"Hagala Folnir\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"true\",\"purified\":\"false\",\"patience\":\"0\",\"idealistic\":\"0\",\"curious\":\"0\",\"loyal\":\"0\",\"energetic\":\"-113\",\"external\":\"0\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"yggdrasilsYeoman"}'
+gamzee_but_corrupt = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\":\"1542840462569\",\"lastFed\":\"1542840462569\",\"dollDATAURL\":\"Gamzee+Makara Of Nidhogg%3A___HBRjHbRjHbRBC5Lk5ORBC5J8fHz_uin_uiljHbQAAAAAAAAhISERERFKSkpjHbQ3A23ExMRjHbQxDloIgpBSJ_grYKgVB4PY\",\"boredomJson\":\"0\",\"nameJSON\":\"Gamzee Makara\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"true\",\"purified\":\"false\",\"patience\":\"0\",\"idealistic\":\"-113\",\"curious\":\"0\",\"loyal\":\"0\",\"energetic\":\"0\",\"external\":\"0\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"carcinoGeneticist"}'
+
+permanents = [gamzee_but_corrupt,test,karkat,feferi,terezi,sollux,vriska,kanaya,tavros,eridan,gamzee,nepeta,aradia,equius,despap,eirikr,zawhei,hagala]
 
 #TimeHole.create(permanent: true , wigglerJSON: terezi)
 
@@ -57,7 +60,7 @@ permanents = [karkat,feferi,terezi,sollux,vriska,kanaya,tavros,eridan,gamzee,nep
 permanents.each do |x|
   if(!TimeHole.exists?(wigglerJSON: x))
     puts "adding a wiggler #{x}"
-    TimeHole.create(permanent: true , wigglerJSON: x)
+    TimeHole.create(permanent: true , wigglerJSON: x, caretaker_id:1)
   end
 end
 
