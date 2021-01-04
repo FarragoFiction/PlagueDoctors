@@ -39,6 +39,7 @@ class TimeHolesController < ApplicationController
       gamzee = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\":\"1542840462569\",\"lastFed\":\"1542840462569\",\"dollDATAURL\":\"Gamzee+Makara%3A___HBRjHbRjHbRBC5Lk5ORBC5J8fHz_uin_uiljHbQAAAAAAAAhISERERFKSkpjHbQ3A23ExMRjHbQxDloIgpBSJ_grYKgVB4PY\",\"boredomJson\":\"0\",\"nameJSON\":\"Gamzee Makara\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"false\",\"purified\":\"false\",\"patience\":\"0\",\"idealistic\":\"-113\",\"curious\":\"0\",\"loyal\":\"0\",\"energetic\":\"0\",\"external\":\"0\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"carcinoGeneticist"}'
       g2 = TimeHole.create(permanent: true , wigglerJSON: gamzee, caretaker_id:1)
       render json: g2.as_json, status: 200
+      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"BANNED CLOWN TRADE, Caretaker: #{caretaker.id}"))
       return
     end
 
@@ -108,6 +109,7 @@ class TimeHolesController < ApplicationController
 
     if(caretaker.is_banned request.ip)
       #not so silently fail.
+      AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"BANNED CLOWN ABDICATION, Caretaker: #{caretaker.id}"))
       render text: "You. Monster.", status: 200
       return
     end

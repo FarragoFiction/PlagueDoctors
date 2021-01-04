@@ -4,6 +4,30 @@
                 style: "background: url('#{image_path('friend.png')}')" do%>
   <h1>All Seeing Eyes</h1>
 
+  Bans
+  <table id = "ban_list">
+    <thead>
+    <tr>
+      <th>Time</th>
+      <th>Ip</th>
+      <th>Ban Reason</th>
+      <th>Caretaker ID</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @bans.each do |ban| %>
+      <tr>
+        <td><%= ban.created_at %></td>
+        <td><%= ban.ip %></td>
+        <td><%= ban.reason %></td>
+        <td><%= ban.caretaker_id%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+Monitoring
 <table id = "thing">
   <thead>
     <tr>
@@ -24,4 +48,5 @@
     <% end %>
   </tbody>
 </table>
-<%end %>
+<% end %>
+

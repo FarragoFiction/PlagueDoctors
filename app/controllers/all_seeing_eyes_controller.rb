@@ -7,6 +7,7 @@ class AllSeeingEyesController < ApplicationController
     if(is_admin)
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Admin All Seeing Eye"))
       @all_seeing_eyes = AllSeeingEye.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).reverse
+      @bans = Banned.all
     else
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Admin All Seeing Eye"))
       render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
