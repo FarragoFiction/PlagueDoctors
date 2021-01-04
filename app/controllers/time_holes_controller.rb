@@ -33,6 +33,15 @@ class TimeHolesController < ApplicationController
     caretaker = Caretaker.find_by_login(params["login"])
     caretaker = caretaker.authenticate(params["password"])
     id = nil
+
+    if(caretaker.is_banned request.ip)
+      #not so silently fail.
+      gamzee = '{"pet":"{\"lastPlayed\":\"1542840462569\",\"isempress\":\"false\",\"hatchDate\":\"1542840462569\",\"lastFed\":\"1542840462569\",\"dollDATAURL\":\"Gamzee+Makara%3A___HBRjHbRjHbRBC5Lk5ORBC5J8fHz_uin_uiljHbQAAAAAAAAhISERERFKSkpjHbQ3A23ExMRjHbQxDloIgpBSJ_grYKgVB4PY\",\"boredomJson\":\"0\",\"nameJSON\":\"Gamzee Makara\",\"healthJson\":\"100\",\"TYPE\":\"GRUB\",\"corrupt\":\"false\",\"purified\":\"false\",\"patience\":\"0\",\"idealistic\":\"-113\",\"curious\":\"0\",\"loyal\":\"0\",\"energetic\":\"0\",\"external\":\"0\",\"remembered\":\"{}\",\"rememberedNames\":\"{}\",\"rememberedCastes\":\"{}\"}","breeder":"carcinoGeneticist"}'
+      render json: gamzee.as_json, status: 200
+      return
+    end
+
+    
     if(caretaker)
       id = caretaker.id
       caretaker.grubs_donated += 1
@@ -41,11 +50,7 @@ class TimeHolesController < ApplicationController
       caretaker.save!
     end
 
-    if(caretaker.is_banned request.ip)
-      #not so silently fail.
-      render text: "You. Monster.", status: 200
-      return
-    end
+
 
     @chosen_time_hole = TimeHole.randomGrub
     @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
