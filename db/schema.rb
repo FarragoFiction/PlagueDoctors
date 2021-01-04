@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191205234648) do
+ActiveRecord::Schema.define(version: 20210104223655) do
 
   create_table "all_seeing_eyes", force: :cascade do |t|
     t.string   "ip"
     t.string   "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "banneds", force: :cascade do |t|
+    t.string   "ip"
+    t.string   "reason"
+    t.integer  "caretaker_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "caretakers", force: :cascade do |t|

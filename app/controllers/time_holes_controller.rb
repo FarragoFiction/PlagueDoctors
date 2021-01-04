@@ -41,6 +41,12 @@ class TimeHolesController < ApplicationController
       caretaker.save!
     end
 
+    if(caretaker.is_banned request.ip)
+      #not so silently fail.
+      render text: "You. Monster.", status: 200
+      return
+    end
+
     @chosen_time_hole = TimeHole.randomGrub
     @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
 
@@ -91,6 +97,12 @@ class TimeHolesController < ApplicationController
     if(!AllSeeingEye.timehole_accepts_ip? request.ip)
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(caretaker,"Abandon Limit Reached"))
       render json: {error: "In order to stop floods, only #{AllSeeingEye.abandon_limit} grubs per caretaker (calculated based on current conditions) may be callouslly abandoned into the TIMEHOLE every 24 hours."}, status: 400
+      return
+    end
+
+    if(caretaker.is_banned request.ip)
+      #not so silently fail.
+      render text: "You. Monster.", status: 200
       return
     end
 

@@ -5,6 +5,20 @@ class Caretaker < ApplicationRecord
   before_save :not_null
   has_many :time_holes
 
+  def is_banned ip
+    ip_ban = Banned.where(ip: ip)
+    caretaker_ban = Banned.where(caretaker_id: self.id)
+    puts "ip ban is #{ip_ban.length} and caretaker ban is #{caretaker_ban.length}"
+    if(ip_ban.length > 0  || caretaker_ban.length > 0 )
+      return true
+    end
+    return false
+  end
+
+  def ban_hammer ip, reason
+    Banned.create(ip: ip, caretaker_id: self.id, reason: reason)
+  end
+
   def grubs_adopted
     read_attribute(:grubs_adopted) || 0
   end
