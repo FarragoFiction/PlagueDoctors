@@ -4,6 +4,7 @@ class Caretaker < ApplicationRecord
   #TODO make sure login is unique
   before_save :not_null
   has_many :time_holes
+  has_many :banneds
 
   def is_banned ip
     ip_ban = Banned.where(ip: ip)
@@ -72,7 +73,10 @@ class Caretaker < ApplicationRecord
 
   #i am doing so many metaprogramming shenanigans here, it shoudl probably be illegal
   # but it acomplishes my goal of getting this done quick
+  # Caretaker.sortShenanigans(Caretaker.all, "total_points", true, 10)
   def Caretaker.sortShenanigans(files,sortby, reverse, limit)
+    #bans don't count
+    files = files.reject{|x| x.banneds.length > 0}
     #secretly the default is to have max first cuz thats what you'd expect
     if reverse
       if(Caretaker.has_attribute? sortby)
