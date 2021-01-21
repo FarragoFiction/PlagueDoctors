@@ -147,12 +147,16 @@ class CaretakersController < ApplicationController
   # PATCH/PUT /caretakers/1.json
   def update
     respond_to do |format|
-      if @caretaker.update(caretaker_params)
-        format.html { redirect_to @caretaker, notice: 'Caretaker was successfully updated.' }
-        format.json { render :show, status: :ok, location: @caretaker }
+      if(@caretaker.is_banned request.remote_ip)
+        format.html { redirect_to @caretaker, notice: 'Bans are not just per account.' }
       else
-        format.html { render :edit }
-        format.json { render json: @caretaker.errors, status: :unprocessable_entity }
+        if @caretaker.update(caretaker_params)
+          format.html { redirect_to @caretaker, notice: 'Caretaker was successfully updated.' }
+          format.json { render :show, status: :ok, location: @caretaker }
+        else
+          format.html { render :edit }
+          format.json { render json: @caretaker.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -14,6 +14,10 @@ class Caretaker < ApplicationRecord
     end
 
     if(ip_ban.length > 0  || caretaker_ban.length > 0 )
+      if(!self.banflag)
+        self.banflag = true
+        self.save!
+      end
       return true
     end
     return false
@@ -21,6 +25,9 @@ class Caretaker < ApplicationRecord
 
   def ban_hammer ip, reason
     Banned.create(ip: ip, caretaker_id: self.id, reason: reason)
+    #speeds db up
+    self.banflag = true
+    self.save!
   end
 
   def grubs_adopted
@@ -79,7 +86,7 @@ class Caretaker < ApplicationRecord
   # Caretaker.sortShenanigans(Caretaker.all, "total_points", true, 10)
   def Caretaker.sortShenanigans(files,sortby, reverse, limit)
     #bans don't count
-    files = files.reject{|x| x.banneds.length > 0}
+    files = files.reject{|x| x.banflag}
     #secretly the default is to have max first cuz thats what you'd expect
     if reverse
       if(Caretaker.has_attribute? sortby)
