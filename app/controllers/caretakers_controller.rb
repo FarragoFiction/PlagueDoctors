@@ -127,13 +127,19 @@ class CaretakersController < ApplicationController
     @caretaker = Caretaker.new(caretaker_params)
 
     respond_to do |format|
-      if @caretaker.save
-        format.html { redirect_to @caretaker, notice: 'Caretaker was successfully created.' }
-        format.json { render :show, status: :created, location: @caretaker }
+      if(@caretaker.is_banned request.remote_ip)
+        format.html { redirect_to @caretaker, notice: 'Bans are not just per account.' }
       else
-        format.html { render :new }
-        format.json { render json: @caretaker.errors, status: :unprocessable_entity }
+
+        if @caretaker.save
+          format.html { redirect_to @caretaker, notice: 'Caretaker was successfully created.' }
+          format.json { render :show, status: :created, location: @caretaker }
+        else
+          format.html { render :new }
+          format.json { render json: @caretaker.errors, status: :unprocessable_entity }
+        end
       end
+
     end
   end
 
