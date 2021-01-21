@@ -72,7 +72,6 @@ class CaretakersController < ApplicationController
   def confirmedLogin
     # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
     initialCaretaker = Caretaker.find_by_login(params["login"])
-    initialCaretaker.is_banned request.remote_ip
     if(!initialCaretaker)
       puts "going to create a caretaker"
       Caretaker.create!(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"], good_boi_points: 1, bad_boi_points: 0)
@@ -81,6 +80,8 @@ class CaretakersController < ApplicationController
     end
 
     caretaker = Caretaker.find_by_login(params["login"]).authenticate(params["password"])
+    caretaker.is_banned request.remote_ip
+
     if(caretaker)
       render plain: "200", status: 200
     else
