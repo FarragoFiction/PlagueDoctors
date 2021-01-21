@@ -37,6 +37,7 @@ class CaretakersController < ApplicationController
   def idFromLogin
     params.permit(:login, :password)
     caretaker = Caretaker.find_by_login(params["login"])
+    caretaker.is_banned request.remote_ip
     caretaker = caretaker.authenticate(params["password"])
     id = nil
     if(caretaker)
@@ -48,6 +49,8 @@ class CaretakersController < ApplicationController
 
   def upvote
     @caretaker.good_boi_points += 1
+    @caretaker.is_banned request.remote_ip
+
     if(@caretaker.save!)
       render plain: "200", status: 200
     else
@@ -57,6 +60,7 @@ class CaretakersController < ApplicationController
 
   def downvote
     @caretaker.bad_boi_points += 1
+    @caretaker.is_banned request.remote_ip
     if(@caretaker.save!)
       render plain: "200", status: 200
     else
@@ -68,7 +72,7 @@ class CaretakersController < ApplicationController
   def confirmedLogin
     # Caretaker.find_by_login("yggdrasilsYeoman").authenticate("nidhoggsFavorite")
     initialCaretaker = Caretaker.find_by_login(params["login"])
-
+    initialCaretaker.is_banned request.remote_ip
     if(!initialCaretaker)
       puts "going to create a caretaker"
       Caretaker.create!(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"], good_boi_points: 1, bad_boi_points: 0)
@@ -107,6 +111,7 @@ class CaretakersController < ApplicationController
   # GET /caretakers/new
   def new
     @caretaker = Caretaker.new
+    @caretaker.is_banned request.remote_ip
     respond_to do |format|
       format.html  { render :html => "haha nope, plz dont hax the server" }
       format.json  { render :json => @caretakers }
@@ -115,6 +120,7 @@ class CaretakersController < ApplicationController
 
   # GET /caretakers/1/edit
   def edit
+    @caretaker.is_banned request.remote_ip
     respond_to do |format|
       format.html  { render :html => "haha nope, plz dont hax the server" }
       format.json  { render :json => @caretakers }
@@ -125,12 +131,9 @@ class CaretakersController < ApplicationController
   # POST /caretakers.json
   def create
     @caretaker = Caretaker.new(caretaker_params)
+    @caretaker.is_banned request.remote_ip
 
     respond_to do |format|
-      if(@caretaker.is_banned request.remote_ip)
-        format.html { redirect_to @caretaker, notice: 'Bans are not just per account.' }
-      else
-
         if @caretaker.save
           format.html { redirect_to @caretaker, notice: 'Caretaker was successfully created.' }
           format.json { render :show, status: :created, location: @caretaker }
@@ -138,25 +141,21 @@ class CaretakersController < ApplicationController
           format.html { render :new }
           format.json { render json: @caretaker.errors, status: :unprocessable_entity }
         end
-      end
-
     end
   end
 
   # PATCH/PUT /caretakers/1
   # PATCH/PUT /caretakers/1.json
   def update
+    @caretaker.is_banned request.remote_ip
+
     respond_to do |format|
-      if(@caretaker.is_banned request.remote_ip)
-        format.html { redirect_to @caretaker, notice: 'Bans are not just per account.' }
+      if @caretaker.update(caretaker_params)
+        format.html { redirect_to @caretaker, notice: 'Caretaker was successfully updated.' }
+        format.json { render :show, status: :ok, location: @caretaker }
       else
-        if @caretaker.update(caretaker_params)
-          format.html { redirect_to @caretaker, notice: 'Caretaker was successfully updated.' }
-          format.json { render :show, status: :ok, location: @caretaker }
-        else
-          format.html { render :edit }
-          format.json { render json: @caretaker.errors, status: :unprocessable_entity }
-        end
+        format.html { render :edit }
+        format.json { render json: @caretaker.errors, status: :unprocessable_entity }
       end
     end
   end
