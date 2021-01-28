@@ -79,10 +79,10 @@ class CaretakersController < ApplicationController
       initialCaretaker.update(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"])
     end
 
-    caretaker = Caretaker.find_by_login(params["login"]).authenticate(params["password"])
+    caretaker = Caretaker.find_by_login(params["login"])
     caretaker.is_banned request.remote_ip
 
-    if(caretaker)
+    if(caretaker.authenticate(params["password"]))
       render plain: "200", status: 200
     else
       caretaker = Caretaker.find_by_login(params["login"])
