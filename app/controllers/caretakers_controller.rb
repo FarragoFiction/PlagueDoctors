@@ -76,7 +76,7 @@ class CaretakersController < ApplicationController
       puts "going to create a caretaker"
       Caretaker.create!(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"], good_boi_points: 1, bad_boi_points: 0)
     else
-      initialCaretaker.update(name: params["name"], login: params["login"], password: params["password"], desc: params["desc"], doll: params["doll"])
+      initialCaretaker.update(name: params["name"], login: params["login"], desc: params["desc"], doll: params["doll"])
     end
 
     caretaker = Caretaker.find_by_login(params["login"])
