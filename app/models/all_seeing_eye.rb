@@ -11,14 +11,12 @@ class AllSeeingEye < ApplicationRecord
 
   #calculated
   def self.abandon_limit
-    if(TimeHole.all.count < 30)
+    if(TimeHole.all.count < 100)
       return  113
-    elsif (TimeHole.all.count < 50)
-      return 33
-   elsif (TimeHole.all.count > 113)
-          return 3
+    elsif (TimeHole.all.count < 300)
+      return 85
     end
-    return 13
+    return 33
   end
 
   def self.create_message object, message
