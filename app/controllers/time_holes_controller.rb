@@ -58,7 +58,7 @@ class TimeHolesController < ApplicationController
     @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
 
     if(!@new_time_hole.save)
-      render json: {error: "Look. No clones. No pupated trolls. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
+      render json: {error: "Look. No clones. No pupated trolls. Period. I've had too many complaints. Just. Stop. Okay?  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs."}, status: 400
       return
     end
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"TIMEHOLE Donate , Caretaker: #{caretaker.id}, Wiggler Name: #{@new_time_hole.name}"))
@@ -103,14 +103,14 @@ class TimeHolesController < ApplicationController
     caretaker = Caretaker.find_by_login(params["login"])
     if(!AllSeeingEye.timehole_accepts_ip? request.ip)
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(caretaker,"Abandon Limit Reached"))
-      render json: {error: "In order to stop floods, only #{AllSeeingEye.abandon_limit} grubs per caretaker (calculated based on current conditions) may be callouslly abandoned into the TIMEHOLE every 24 hours."}, status: 400
+      render json: {error: "In order to stop floods, only #{AllSeeingEye.abandon_limit} grubs per caretaker (calculated based on current conditions) may be callouslly abandoned into the TIMEHOLE every 24 hours.  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs."}, status: 400
       return
     end
 
     if(caretaker.is_banned request.ip)
       #not so silently fail.
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"BANNED CLOWN ABDICATION, Caretaker: #{caretaker.id}"))
-      render text: "You. Monster.", status: 200
+      render text: "You. Monster.  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs.", status: 200
       return
     end
 
@@ -124,19 +124,19 @@ class TimeHolesController < ApplicationController
 
     @new_time_hole = TimeHole.new(wigglerJSON: params[:wigglerJSON], permanent: false, caretaker_id: id)
     if(!@new_time_hole.save)
-      render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?"}, status: 400
+      render json: {error: "Look. No clones. Period. I've had too many complaints. Just. Stop. Okay?  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs."}, status: 400
       return
     end
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@new_time_hole,"Abdicate, Caretaker: #{caretaker.id}, Wiggler Name: #{@new_time_hole.name} "))
 
-    render text: "You monster.", status: 200
+    render text: "You monster.  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs.", status: 200
   end
 
   # GET /time_holes/new
   def new
     @time_hole = TimeHole.new
     respond_to do |format|
-      format.html  { render :html => "haha nope, plz dont hax the server" }
+      format.html  { render :html => "haha nope, plz dont hax the server  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs." }
       format.json  { render :json => @caretakers }
     end
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"New"))
@@ -147,7 +147,7 @@ class TimeHolesController < ApplicationController
   def edit
     if(!is_admin)
       respond_to do |format|
-        format.html  { render :html => "haha nope, plz dont hax the server" }
+        format.html  { render :html => "haha nope, plz dont hax the server  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs." }
         format.json  { render :json => @caretakers }
       end
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Edit"))
@@ -163,7 +163,7 @@ class TimeHolesController < ApplicationController
 
     respond_to do |format|
       if @time_hole.save
-        format.html { redirect_to @time_hole, notice: 'Time hole was successfully created.' }
+        format.html { redirect_to @time_hole, notice: "Time hole was successfully created. Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs." }
         format.json { render :show, status: :created, location: @time_hole }
       else
         format.html { render :new }
@@ -178,7 +178,7 @@ class TimeHolesController < ApplicationController
     AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Update"))
     respond_to do |format|
       if @time_hole.update(time_hole_params)
-        format.html { redirect_to @time_hole, notice: 'Time hole was successfully updated.' }
+        format.html { redirect_to @time_hole, notice: "Time hole was successfully updated.  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs." }
         format.json { render :show, status: :ok, location: @time_hole }
       else
         format.html { render :edit }
@@ -194,12 +194,12 @@ class TimeHolesController < ApplicationController
     if(!@time_hole.permanent)
       @time_hole.destroy
       respond_to do |format|
-        format.html { redirect_to time_holes_url, notice: 'Time hole was successfully destroyed.' }
+        format.html { redirect_to time_holes_url, notice: "Time hole was successfully destroyed.  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to time_holes_url, notice: 'Pleaes dont destroy canon grubs' }
+        format.html { redirect_to time_holes_url, notice: "Pleaes dont destroy canon grubs  Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs." }
         format.json { head :no_content }
       end
     end
