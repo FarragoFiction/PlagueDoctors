@@ -12,7 +12,7 @@ class TimeHolesController < ApplicationController
         AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Admin Show All TimeHoles"))
       else
         AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show All TimeHoles"))
-        render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+        render json: {error: "You don't look like an admin to me. Who authorized this? Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs."}, status: 400
       end
     end
   end
@@ -24,7 +24,7 @@ class TimeHolesController < ApplicationController
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(@time_hole,"Show One"))
     else
       AllSeeingEye.create(ip: request.remote_ip, message: AllSeeingEye.create_message(nil,"Failed Show One"))
-      render json: {error: "You don't look like an admin to me. Who authorized this?"}, status: 400
+      render json: {error: "You don't look like an admin to me. Who authorized this? Corruption levels at #{100* Caretaker.number_corruption_sources/@caretakers.count}%. Zampanio stirs."}, status: 400
     end
   end
 
